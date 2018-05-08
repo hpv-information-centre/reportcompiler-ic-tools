@@ -11,9 +11,10 @@ os.chdir(
 
 setup(
     name='reportcompiler-ic-tools',
-    version='0.1',
-    packages=find_packages('.'),
+    version='0.2.0',
+    packages=find_packages('.', exclude=['test']),
     include_package_data=True,
+    package_data={'reportcompiler_ic_tools': ['data/*']},
     license='MIT License',
     description='The HPV Information Center Report Compiler '
                 'tools provide methods to easily take advantage of the data '
@@ -37,5 +38,9 @@ setup(
     install_requires=[
         'reportcompiler-ic-fetcher',
         'odictliteral',
+        'plotnine',  # Currently requires development version
+        'fiona',
+        'geopandas',
+        'pyproj'
     ],
 )
