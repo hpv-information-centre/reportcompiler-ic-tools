@@ -132,7 +132,7 @@ def generate_map(data,
     else:
         in_region = ~pd.isnull(plot_data[value_field])
         in_region_missing = pd.isnull(plot_data[value_field])
-        out_region = np.empty_like(plot_data)
+        out_region = np.repeat(False, len(plot_data))
 
     if plot_data[value_field].dtype == 'object':
         # Assume discrete values
@@ -154,28 +154,31 @@ def generate_map(data,
            geom_map(plot_data_values,
                     aes(fill=value_field),
                     color=line_color,
-                    size=0.2) +
+                    size=0.3) +
            geom_map(plot_data_missing,
                     aes(color='plot_dot'),
                     fill=na_color,
-                    size=0.2) +
+                    size=0.3) +
            geom_map(plot_data_out_region,
                     fill=out_region_color,
                     color=line_color,
-                    size=0.2) +
+                    size=0.3) +
            geom_point(dots_region,
                       aes(x='lon', y='lat', fill=value_field),
-                      size=5,
+                      size=3,
+                      stroke=.1,
                       color=line_color) +
            geom_point(dots_region_missing,
                       aes(x='lon', y='lat'),
                       fill=na_color,
-                      size=5,
+                      size=3,
+                      stroke=.1,
                       color=line_color) +
            geom_point(dots_out_region,
                       aes(x='lon', y='lat'),
                       fill=out_region_color,
-                      size=5,
+                      size=3,
+                      stroke=.1,
                       color=line_color) +
            scale_x_continuous(breaks=[], limits=limits_x) +
            scale_y_continuous(breaks=[], limits=limits_y) +
@@ -184,7 +187,7 @@ def generate_map(data,
                               values=[line_color],
                               breaks=[False],
                               labels=['No data available']) +
-           theme(figure_size=(10*ratio, 10),
+           theme(figure_size=(5*ratio, 5),
                  panel_background=element_rect(fill='white', color='black'),
                  panel_border=element_rect(fill='white', color='black')) +
            xlab('') + ylab('')
