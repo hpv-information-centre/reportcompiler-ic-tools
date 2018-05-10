@@ -51,6 +51,15 @@ REGION_BOUNDS = {
     ),
 }
 
+DEFAULT_TOLERANCES = {
+    'XWX': 40000,
+    'XFX': 26000,
+    'XMX': 40000,
+    'XSX': 32000,
+    'XEX': 13000,
+    'XOX': .4,
+}
+
 # A dot will be plotted for countries with areas below this value
 DOT_THRESHOLD = 35
 
@@ -61,6 +70,7 @@ def generate_map(data,
                  iso_field='iso',
                  scale_params=None,
                  plot_na_dots=False,
+                 tolerance=None,
                  out_region_color='#f0f0f0',
                  na_color='#aaaaaa',
                  line_color='#666666',
@@ -73,6 +83,9 @@ def generate_map(data,
             '"region" not available. Valid regions are: {}'.format(
                 ', '.join(REGION_BOUNDS.keys())
             ))
+
+    if tolerance is None:
+        tolerance = DEFAULT_TOLERANCES[region]
 
     countries = GeoDataFrame.from_file(
         os.path.join(os.path.dirname(__file__), 'data/world-countries.shp'))
@@ -92,6 +105,8 @@ def generate_map(data,
         countries.loc[XOX_countries, 'lat'] = [c.y for c in centroids]
     else:
         countries = countries.to_crs(PROJECTION_DICT[projection])
+
+    countries['geometry'] = countries['geometry'].simplify(tolerance)
 
     upper_left, lower_right = REGION_BOUNDS[region]
     limits_x = [upper_left[0], lower_right[0]]
