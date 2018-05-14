@@ -9,10 +9,11 @@ from reportcompiler_ic_tools.markers import \
     source_markers, note_markers, method_markers, year_markers
 
 
-def generate_references(data_dict,
-                        column_names=None,
-                        row_id_column=None,
-                        format='latex'):
+def generate_table(data_dict,
+                   selected_columns=None,
+                   column_names=None,
+                   row_id_column=None,
+                   format='latex'):
     """
     Generates a new dataframe with the markers corresponding to the defined
         references (sources, notes, ...), alongside a list of the markers'
@@ -26,15 +27,18 @@ def generate_references(data_dict,
         of each marker with the reference text
     :rtype: tuple (dataframe, list)
     """
-    data = data_dict['data']
+    data = data_dict['data'].copy()
+    if selected_columns is None:
+        selected_columns = data.columns
     if column_names is None:
         column_names = data.columns
     if row_id_column is None:
         row_id_column = data.columns[0]
-    if len(column_names) != len(data.columns):
+    if len(column_names) != len(selected_columns):
         raise ValueError(
             'column_names must have the same lengths as the number of '
-            'columns in data_dict')
+            'columns in data_dict'
+        )
     ref_types = odict[
         'sources': source_markers(),
         'notes': note_markers(),
@@ -49,39 +53,54 @@ def generate_references(data_dict,
         marker_data[col] = marker_data[col].astype(object)
         for row in marker_data.index:
             marker_data.loc[row, col] = []
-    table_footer = []
+    table_footer = {
+        'sources': [],
+        'notes': [],
+        'methods': [],
+        'years': [],
+    }
 
     for ref_type, markers in ref_types.items():
         ref_data = data_dict[ref_type]
         _build_global_refs(ref_data['global'],
-                           table_footer,
+                           table_footer[ref_type],
                            markers,
                            ref_type)
         column_names = _build_column_refs(marker_data,
                                           column_names,
                                           ref_data['column'],
-                                          table_footer,
+                                          table_footer[ref_type],
                                           markers, ref_type)
         _build_row_refs(marker_data,
                         ref_data['row'],
                         row_id_column,
-                        table_footer,
+                        table_footer[ref_type],
                         markers,
                         ref_type)
         _build_cell_refs(marker_data,
                          ref_data['cell'],
-                         table_footer,
+                         table_footer[ref_type],
                          markers,
                          ref_type)
 
-    referenced_data = _merge_refs(data, marker_data, format)
-    referenced_data.columns = column_names
-    return (referenced_data, table_footer)
+    referenced_data = _build_table(data, marker_data, format)
+    referenced_data = referenced_data[selected_columns]
+    for ref_type, _ in ref_types.items():
+        table_footer[ref_type] = [{'marker': _marker, 'text': _ref}
+                                  for _marker, _ref
+                                  in table_footer[ref_type]]
+
+    return (referenced_data, column_names, table_footer)
 
 
-def _merge_refs(data, marker_data, format):
+def merge_references(*data_dicts):
+    # TODO: Implementation
+    pass
+
+
+def _build_table(data, marker_data, format):
     type_functions = {
-        'latex': _build_latex_items,
+        'latex': _build_latex_table,
     }
 
     try:
@@ -90,9 +109,9 @@ def _merge_refs(data, marker_data, format):
         raise ValueError("'{}' table type is not defined")
 
 
-def _build_latex_items(data, marker_data):
+def _build_latex_table(data, marker_data):
     marker_data = marker_data.applymap(
-        lambda lst: '$^{' + ','.join(lst) + '}$' if lst != [] else ''
+        lambda lst: r'$^{' + ','.join(lst) + '}$' if lst != [] else ''
     )
     data = data.applymap(
         lambda val: str(val)
@@ -102,11 +121,16 @@ def _build_latex_items(data, marker_data):
 
 def _build_global_refs(ref_data, table_footer, markers, ref_type):
     for ref in [ref.text for ref in ref_data.itertuples()]:
-        marker = next(markers)
+        marker = None
+        try:
+            marker = [_marker
+                      for _marker, _ref
+                      in table_footer
+                      if _ref == ref][0]
+        except IndexError:
+            pass
         if marker is None:
-            raise EnvironmentError(
-                "No more '{}' markers are available.".format(ref_type))
-        table_footer.append((marker, ref))
+            table_footer.append(('', ref))
 
 
 def _build_column_refs(marker_data,
@@ -122,12 +146,23 @@ def _build_column_refs(marker_data,
                 if ref.column == column]
         col_markers = []
         for ref in refs:
-            marker = next(markers)
+            marker = None
+            try:
+                marker = [_marker
+                          for _marker, _ref
+                          in table_footer
+                          if _ref == ref][0]
+            except IndexError:
+                pass
             if marker is None:
-                raise EnvironmentError(
-                    "No more '{}' markers are available.".format(ref_type))
-            col_markers.append(marker)
-            table_footer.append((marker, ref))
+                try:
+                    marker = next(markers)
+                except StopIteration:
+                    raise EnvironmentError(
+                        "No more '{}' markers are available.".format(ref_type))
+                table_footer.append((marker, ref))
+            if marker not in col_markers:
+                col_markers.append(marker)
         if len(col_markers) > 0:
             joined_markers = ','.join(col_markers)
             _column_names[i] = \
@@ -147,12 +182,23 @@ def _build_row_refs(marker_data,
                 if ref.row == row_index]
         row_markers = marker_data.loc[row_index, row_id_column]
         for ref in refs:
-            marker = next(markers)
+            marker = None
+            try:
+                marker = [_marker
+                          for _marker, _ref
+                          in table_footer
+                          if _ref == ref][0]
+            except IndexError:
+                pass
             if marker is None:
-                raise EnvironmentError(
-                    "No more '{}' markers are available.".format(ref_type))
-            row_markers.append(marker)
-            table_footer.append((marker, ref))
+                try:
+                    marker = next(markers)
+                except StopIteration:
+                    raise EnvironmentError(
+                        "No more '{}' markers are available.".format(ref_type))
+                table_footer.append((marker, ref))
+            if marker not in row_markers:
+                row_markers.append(marker)
 
 
 def _build_cell_refs(marker_data, ref_data, table_footer, markers, ref_type):
@@ -162,11 +208,23 @@ def _build_cell_refs(marker_data, ref_data, table_footer, markers, ref_type):
                     for ref in ref_data.itertuples()
                     if ref.row == row_index and ref.column == column]
             for ref in refs:
-                marker = next(markers)
+                marker = None
+                try:
+                    marker = [_marker
+                              for _marker, _ref
+                              in table_footer
+                              if _ref == ref][0]
+                except IndexError:
+                    pass
                 if marker is None:
-                    raise EnvironmentError(
-                        "No more '{}' markers are available.".format(ref_type))
-                marker_data.loc[row_index, column].append(marker)
-                table_footer.append((marker, ref))
+                    try:
+                        marker = next(markers)
+                    except StopIteration:
+                        raise EnvironmentError(
+                            "No more '{}' markers are available.".format(
+                                ref_type))
+                    table_footer.append((marker, ref))
+                if marker not in marker_data.loc[row_index, column]:
+                    marker_data.loc[row_index, column].append(marker)
 
 __all__ = ['generate_references']
