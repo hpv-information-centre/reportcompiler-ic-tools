@@ -11,7 +11,7 @@ os.chdir(
 
 setup(
     name='reportcompiler-ic-tools',
-    version='0.2.0',
+    version='0.3.0',
     packages=find_packages('.', exclude=['test']),
     include_package_data=True,
     package_data={'reportcompiler_ic_tools': ['data/*']},
