@@ -71,6 +71,7 @@ def generate_map(data,
                  scale_params=None,
                  plot_na_dots=False,
                  tolerance=None,
+                 plot_size=8,
                  out_region_color='#f0f0f0',
                  na_color='#aaaaaa',
                  line_color='#666666',
@@ -187,9 +188,10 @@ def generate_map(data,
                               values=[line_color],
                               breaks=[False],
                               labels=['No data available']) +
-           theme(figure_size=(5*ratio, 5),
+           theme(figure_size=(plot_size*ratio, plot_size),
                  panel_background=element_rect(fill='white', color='black'),
-                 panel_border=element_rect(fill='white', color='black')) +
+                 panel_border=element_rect(fill='white', color='black')
+                 ) +
            xlab('') + ylab('')
           )
 
