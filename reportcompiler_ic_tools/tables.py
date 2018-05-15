@@ -9,11 +9,11 @@ from reportcompiler_ic_tools.markers import \
     source_markers, note_markers, method_markers, year_markers
 
 
-def generate_table(data_dict,
-                   selected_columns=None,
-                   column_names=None,
-                   row_id_column=None,
-                   format='latex'):
+def generate_table_data(data_dict,
+                        selected_columns=None,
+                        column_names=None,
+                        row_id_column=None,
+                        format='latex'):
     """
     Generates a new dataframe with the markers corresponding to the defined
         references (sources, notes, ...), alongside a list of the markers'
@@ -23,9 +23,13 @@ def generate_table(data_dict,
     :param row_id_column: Column name that will contain the marks for row
         references
     :param str format: Format that the returned dataframe should comply with
-    :returns: Original dataframe with necessary reference markers and a list
-        of each marker with the reference text
-    :rtype: tuple (dataframe, list)
+    :returns: Tuple (data, columns, references), where data is the original
+        dataframe with the necessary reference markers, columns is the list
+        with the table columns as will be displayed and references is a nested
+        structure: for each type (sources, notes, ...) there is a list of
+        dictionaries with each ('marker' key) and associated reference ('text'
+        key).
+    :rtype: tuple (dataframe, list, dict)
     """
     data = data_dict['data'].copy()
     if selected_columns is None:
@@ -82,6 +86,8 @@ def generate_table(data_dict,
                          table_footer[ref_type],
                          markers,
                          ref_type)
+
+    # TODO: Implement dates
 
     referenced_data = _build_table(data, marker_data, format)
     referenced_data = referenced_data[selected_columns]
