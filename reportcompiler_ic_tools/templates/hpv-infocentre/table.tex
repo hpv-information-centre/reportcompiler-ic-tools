@@ -1,0 +1,69 @@
+\begin{tabularx}{.85\textwidth}{lXll}
+\BLOCK{for c in ctx.columns -}
+    \VAR{c | escape_tex} \VAR{'& ' if not loop.last else '\\\\ \\hline'}
+\BLOCK{- endfor}
+
+\BLOCK{for row in ctx.data.values}
+    \BLOCK{for c in row -}
+        \VAR{c} \VAR{'& ' if not loop.last else '\\\\'}
+    \BLOCK{- endfor}
+
+\BLOCK{endfor}
+\\
+\end{tabularx}
+
+% TODO: Implement date correctly
+
+{\footnotesize
+\BLOCK{if ctx.footer.sources}
+    \textbf{Sources}: \\
+    \BLOCK{for f in ctx.footer.sources}
+        \BLOCK{if f.marker != ''}
+            $^{\textbf{\VAR{f.marker}}}$
+        \BLOCK{else}
+            \textbf{-}
+        \BLOCK{endif-}
+        \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.notes}
+    \textbf{Notes}: \\
+    \BLOCK{for f in ctx.footer.notes}
+        \BLOCK{if f.marker != ''}
+            $^{\textbf{\VAR{f.marker}}}$
+        \BLOCK{else}
+            \textbf{-}
+        \BLOCK{endif-}
+        \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.methods}
+    \textbf{Methods}: \\
+    \BLOCK{for f in ctx.footer.methods}
+        \BLOCK{if f.marker != ''}
+            $^{\textbf{\VAR{f.marker}}}$
+        \BLOCK{else}
+            \textbf{-}
+        \BLOCK{endif-}
+        \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.years}
+    \textbf{Years}: \\
+    \BLOCK{for f in ctx.footer.years}
+        \BLOCK{if f.marker != ''}
+            $^{\textbf{\VAR{f.marker}}}$
+        \BLOCK{else}
+            \textbf{-}
+        \BLOCK{endif-}
+        \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+}

@@ -14,7 +14,7 @@ setup(
     version='0.3.0',
     packages=find_packages('.', exclude=['test']),
     include_package_data=True,
-    package_data={'reportcompiler_ic_tools': ['data/*']},
+    package_data={'reportcompiler_ic_tools': ['data/*', 'templates/*']},
     license='MIT License',
     description='The HPV Information Center Report Compiler '
                 'tools provide methods to easily take advantage of the data '
@@ -38,7 +38,7 @@ setup(
     install_requires=[
         'reportcompiler-ic-fetcher',
         'odictliteral',
-        'plotnine',  # Currently requires development version
+        'plotnine',
         'fiona',
         'geopandas',
         'pyproj'
