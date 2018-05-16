@@ -18,6 +18,7 @@ def generate_table_data(data_dict,
     Generates a new dataframe with the markers corresponding to the defined
         references (sources, notes, ...), alongside a list of the markers'
         meaning.
+
     :param dict data_dict: Dictionary returned by the IC data fetcher
     :param list column_names: List with the column names in the dataframe
     :param row_id_column: Column name that will contain the marks for row
@@ -89,30 +90,21 @@ def generate_table_data(data_dict,
 
     # TODO: Implement dates
 
-    referenced_data = _build_table(data, marker_data, format)
-    referenced_data = referenced_data[selected_columns]
+    referenced_table = _zip_table(data, marker_data, format)
+    referenced_table = referenced_table[selected_columns]
     for ref_type, _ in ref_types.items():
         table_footer[ref_type] = [{'marker': _marker, 'text': _ref}
                                   for _marker, _ref
                                   in table_footer[ref_type]]
 
-    return (referenced_data, column_names, table_footer)
+    return (referenced_table, column_names, table_footer)
 
 
-def merge_references(*data_dicts):
-    # TODO: Implementation
-    pass
-
-
-def _build_table(data, marker_data, format):
-    type_functions = {
-        'latex': _build_latex_table,
-    }
-
-    try:
-        return type_functions[format](data, marker_data)
-    except KeyError:
-        raise ValueError("'{}' table type is not defined")
+def _zip_table(data, marker_data, format):
+    referenced_data = data.copy()
+    for col in referenced_data.columns:
+        referenced_data[col] = list(zip(data[col], marker_data[col]))
+    return referenced_data
 
 
 def _build_latex_table(data, marker_data):

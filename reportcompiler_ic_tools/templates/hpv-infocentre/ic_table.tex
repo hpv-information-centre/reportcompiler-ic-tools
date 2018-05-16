@@ -12,14 +12,10 @@
 \BLOCK{- endfor}
 
 \BLOCK{for row in ctx.data.values}
-    \BLOCK{for cell in row -}
-        \VAR{cell[0] | escape_tex} 
-        \BLOCK{-if cell[1]}
-            $^{\VAR{cell[1]}}$
-        \BLOCK{endif-}
-        \VAR{'& ' if not loop.last else '\\\\'}
-    \BLOCK{- endfor}
-
+ \BLOCK{for cell in row -}
+  \VAR{-cell[0] | escape_tex-}\BLOCK{-if cell[1]}$^{\VAR{cell[1] | join(',')}}$\BLOCK{endif}
+  \VAR{-' & ' if not loop.last else '\\\\'}
+ \BLOCK{endfor}
 \BLOCK{endfor}
 \\
 \end{tabularx}
@@ -31,7 +27,7 @@
     \textbf{Sources}: \\
     \BLOCK{for f in ctx.footer.sources}
         \BLOCK{if f.marker != ''}
-            $^{\textbf{\VAR{f.marker | escape_tex}}}$
+            $^{\VAR{f.marker | escape_tex}}$
         \BLOCK{else}
             \textbf{-}
         \BLOCK{endif-}
@@ -44,7 +40,7 @@
     \textbf{Notes}: \\
     \BLOCK{for f in ctx.footer.notes}
         \BLOCK{if f.marker != ''}
-            $^{\textbf{\VAR{f.marker | escape_tex}}}$
+            $^{\VAR{f.marker | escape_tex}}$
         \BLOCK{else}
             \textbf{-}
         \BLOCK{endif-}
@@ -57,7 +53,7 @@
     \textbf{Methods}: \\
     \BLOCK{for f in ctx.footer.methods}
         \BLOCK{if f.marker != ''}
-            $^{\textbf{\VAR{f.marker | escape_tex}}}$
+            $^{\VAR{f.marker | escape_tex}}$
         \BLOCK{else}
             \textbf{-}
         \BLOCK{endif-}
@@ -70,7 +66,7 @@
     \textbf{Years}: \\
     \BLOCK{for f in ctx.footer.years}
         \BLOCK{if f.marker != ''}
-            $^{\textbf{\VAR{f.marker | escape_tex}}}$
+            $^{\VAR{f.marker | escape_tex}}$
         \BLOCK{else}
             \textbf{-}
         \BLOCK{endif-}
