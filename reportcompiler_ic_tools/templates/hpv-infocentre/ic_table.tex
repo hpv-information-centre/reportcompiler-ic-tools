@@ -1,11 +1,23 @@
-\begin{tabularx}{.85\textwidth}{lXll}
+\begin{tabularx}{.85\textwidth}{
+    \BLOCK{-if 'table_latex' in  ctx and 'column_spec' in ctx.table_latex}
+        \VAR{ctx.table_latex.column_spec}
+    \BLOCK{else}
+        \BLOCK{-for c in ctx.columns}
+            l
+        \BLOCK{endfor-}
+    \BLOCK{endif-}
+}
 \BLOCK{for c in ctx.columns -}
     \VAR{c | escape_tex} \VAR{'& ' if not loop.last else '\\\\ \\hline'}
 \BLOCK{- endfor}
 
 \BLOCK{for row in ctx.data.values}
-    \BLOCK{for c in row -}
-        \VAR{c} \VAR{'& ' if not loop.last else '\\\\'}
+    \BLOCK{for cell in row -}
+        \VAR{cell[0] | escape_tex} 
+        \BLOCK{-if cell[1]}
+            $^{\VAR{cell[1]}}$
+        \BLOCK{endif-}
+        \VAR{'& ' if not loop.last else '\\\\'}
     \BLOCK{- endfor}
 
 \BLOCK{endfor}
@@ -19,7 +31,7 @@
     \textbf{Sources}: \\
     \BLOCK{for f in ctx.footer.sources}
         \BLOCK{if f.marker != ''}
-            $^{\textbf{\VAR{f.marker}}}$
+            $^{\textbf{\VAR{f.marker | escape_tex}}}$
         \BLOCK{else}
             \textbf{-}
         \BLOCK{endif-}
@@ -32,7 +44,7 @@
     \textbf{Notes}: \\
     \BLOCK{for f in ctx.footer.notes}
         \BLOCK{if f.marker != ''}
-            $^{\textbf{\VAR{f.marker}}}$
+            $^{\textbf{\VAR{f.marker | escape_tex}}}$
         \BLOCK{else}
             \textbf{-}
         \BLOCK{endif-}
@@ -45,7 +57,7 @@
     \textbf{Methods}: \\
     \BLOCK{for f in ctx.footer.methods}
         \BLOCK{if f.marker != ''}
-            $^{\textbf{\VAR{f.marker}}}$
+            $^{\textbf{\VAR{f.marker | escape_tex}}}$
         \BLOCK{else}
             \textbf{-}
         \BLOCK{endif-}
@@ -58,7 +70,7 @@
     \textbf{Years}: \\
     \BLOCK{for f in ctx.footer.years}
         \BLOCK{if f.marker != ''}
-            $^{\textbf{\VAR{f.marker}}}$
+            $^{\textbf{\VAR{f.marker | escape_tex}}}$
         \BLOCK{else}
             \textbf{-}
         \BLOCK{endif-}
