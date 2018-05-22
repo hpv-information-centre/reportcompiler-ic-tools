@@ -8,7 +8,7 @@
     \BLOCK{endif-}
 }
 \BLOCK{for c in ctx.columns -}
-    \VAR{c | escape_tex} \VAR{'& ' if not loop.last else '\\\\ \\hline'}
+    \VAR{c.name | escape_tex}\BLOCK{-if c.markers}$^{\VAR{c.markers | join(',')}}$\BLOCK{endif} \VAR{'& ' if not loop.last else '\\\\ \\hline'}
 \BLOCK{- endfor}
 
 \BLOCK{for row in ctx.data.values}

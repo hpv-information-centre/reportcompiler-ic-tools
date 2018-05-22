@@ -44,6 +44,11 @@ def generate_table_data(data_dict,
             'column_names must have the same lengths as the number of '
             'columns in data_dict'
         )
+    if not set(selected_columns).issubset(set(data.columns)):
+        raise ValueError(
+            'Selected columns must be included in the original dataframe'
+        )
+    data = data[selected_columns]
     ref_types = odict[
         'sources': source_markers(),
         'notes': note_markers(),
@@ -52,7 +57,7 @@ def generate_table_data(data_dict,
     ]
 
     marker_data = pd.DataFrame(data=None,
-                               columns=data.columns,
+                               columns=selected_columns,
                                index=data.index)
     for col in marker_data.columns:
         marker_data[col] = marker_data[col].astype(object)
@@ -65,17 +70,21 @@ def generate_table_data(data_dict,
         'years': [],
     }
 
+    column_markers = [[] for col in selected_columns]
     for ref_type, markers in ref_types.items():
         ref_data = data_dict[ref_type]
         _build_global_refs(ref_data['global'],
                            table_footer[ref_type],
                            markers,
                            ref_type)
-        column_names = _build_column_refs(marker_data,
-                                          column_names,
-                                          ref_data['column'],
-                                          table_footer[ref_type],
-                                          markers, ref_type)
+        _column_markers = _build_column_refs(marker_data,
+                                             selected_columns,
+                                             column_names,
+                                             ref_data['column'],
+                                             table_footer[ref_type],
+                                             markers, ref_type)
+        for i, col in enumerate(column_markers):
+            column_markers[i].extend(_column_markers[i])
         _build_row_refs(marker_data,
                         ref_data['row'],
                         row_id_column,
@@ -88,6 +97,10 @@ def generate_table_data(data_dict,
                          markers,
                          ref_type)
 
+    column_info = [{'name': name, 'markers': markers}
+                   for name, markers
+                   in zip(column_names, column_markers)]
+
     # TODO: Implement dates
 
     referenced_table = _zip_table(data, marker_data, format)
@@ -97,7 +110,7 @@ def generate_table_data(data_dict,
                                   for _marker, _ref
                                   in table_footer[ref_type]]
 
-    return (referenced_table, column_names, table_footer)
+    return (referenced_table, column_info, table_footer)
 
 
 def _zip_table(data, marker_data, format):
@@ -132,13 +145,14 @@ def _build_global_refs(ref_data, table_footer, markers, ref_type):
 
 
 def _build_column_refs(marker_data,
+                       selected_columns,
                        column_names,
                        ref_data,
                        table_footer,
                        markers,
                        ref_type):
-    _column_names = column_names.copy()
-    for i, column in enumerate(marker_data.columns):
+    column_markers = []
+    for column in selected_columns:
         refs = [ref.text
                 for ref in ref_data.itertuples()
                 if ref.column == column]
@@ -161,11 +175,8 @@ def _build_column_refs(marker_data,
                 table_footer.append((marker, ref))
             if marker not in col_markers:
                 col_markers.append(marker)
-        if len(col_markers) > 0:
-            joined_markers = ','.join(col_markers)
-            _column_names[i] = \
-                _column_names[i] + '$^{{{}}}$'.format(joined_markers)
-    return _column_names
+        column_markers.append(col_markers)
+    return column_markers
 
 
 def _build_row_refs(marker_data,
