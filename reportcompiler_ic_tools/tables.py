@@ -114,10 +114,11 @@ def generate_table_data(data_dict,
 
 
 def _zip_table(data, marker_data, format):
-    referenced_data = data.copy()
-    for col in referenced_data.columns:
-        referenced_data[col] = list(zip(data[col], marker_data[col]))
-    return referenced_data
+    for col in data.columns:
+        data[col] = [{'value': value, 'markers': markers}
+                     for value, markers
+                     in list(zip(data[col], marker_data[col]))]
+    return data
 
 
 def _build_latex_table(data, marker_data):
