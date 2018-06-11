@@ -24,6 +24,16 @@ Features
 Installation
 ============
 
+Dependencies
+------------
+
+For linux the installation process should automatically pull all required dependencies via pip. In windows systems, some packages require
+manual installation:
+
+* Visual Studio Build Tools: http://landinghub.visualstudio.com/visual-cpp-build-tools
+* Shapely: https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely
+* Fiona: https://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona
+
 Package
 -------
 

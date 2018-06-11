@@ -1,6 +1,13 @@
 """ Module for installing module as pip package """
 import os
 from setuptools import find_packages, setup
+import sys
+
+sys.path.insert(0, os.path.abspath(__file__))
+from reportcompiler_ic_tools import __version__
+
+module_name = 'reportcompiler-ic-tools'
+module_dir_name = 'reportcompiler_ic_tools'
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
@@ -9,12 +16,32 @@ os.chdir(
     os.path.normpath(
         os.path.join(os.path.abspath(__file__), os.pardir)))
 
+
+def package_files(directory):
+    paths = []
+    for (path, directories, filenames) in os.walk(directory):
+        for filename in filenames:
+            paths.append(os.path.join(path, filename))
+    return paths
+
+data_files = []
+data_dirs = ['data', 'templates']
+for data_dir in data_dirs:
+    data_files.extend(
+        package_files(
+            os.path.normpath(
+                os.path.join(
+                    os.path.abspath(__file__),
+                    os.pardir,
+                    module_dir_name,
+                    data_dir))))
+
 setup(
-    name='reportcompiler-ic-tools',
-    version='0.3.0',
+    name=module_name,
+    version=__version__,
     packages=find_packages('.', exclude=['test']),
     include_package_data=True,
-    package_data={'reportcompiler_ic_tools': ['data/*']},
+    package_data={module_dir_name: data_files},
     license='MIT License',
     description='The HPV Information Center Report Compiler '
                 'tools provide methods to easily take advantage of the data '
@@ -38,9 +65,14 @@ setup(
     install_requires=[
         'reportcompiler-ic-fetcher',
         'odictliteral',
-        'plotnine',  # Currently requires development version
+        'plotnine',
         'fiona',
         'geopandas',
         'pyproj'
+        'sphinx-autoapi',
+        'setuptools',
+        'sphinx',
+        'autoapi',
+        'sphinxcontrib-websupport'
     ],
 )

@@ -1,0 +1,115 @@
+\onecolumn
+\begin{longtable}{
+    \BLOCK{-if 'table_latex' in ctx and 'column_spec' in ctx.table_latex-}
+        \VAR{-ctx.table_latex.column_spec-}
+    \BLOCK{-else-}
+        \BLOCK{-for c in ctx.columns-}
+            l
+        \BLOCK{-endfor-}
+    \BLOCK{endif-}
+}
+\caption{\VAR{ctx.caption}} \\
+
+\rowcolor{ColorTable}
+\BLOCK{for c in ctx.columns -}
+    \textbf{
+        \VAR{-c.name | escape_tex-}
+        \BLOCK{-if c.markers-}
+            $^{\VAR{c.markers | join(',')}}$
+        \BLOCK{-endif-}
+    } 
+        \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
+\BLOCK{- endfor} 
+\endfirsthead
+
+\multicolumn{\VAR{ctx.columns | length}}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\rowcolor{ColorTable}
+\BLOCK{for c in ctx.columns -}
+    \textbf{
+        \VAR{-c.name | escape_tex-}
+        \BLOCK{-if c.markers-}
+            $^{\VAR{c.markers | join(',')}}$
+        \BLOCK{-endif-}
+    } 
+        \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
+\BLOCK{- endfor} 
+\endhead
+
+\arrayrulecolor{ColorTable}\hline 
+\multicolumn{\VAR{ctx.columns | length}}{r}{{Continued on next page}} \\
+\endfoot
+
+\endlastfoot
+
+\BLOCK{for row in ctx.data.values-}
+ \BLOCK{-for cell in row -}
+  \VAR{-cell.value | escape_tex-}
+  \BLOCK{-if cell.markers-}
+    $^{\VAR{-cell.markers | join(',')-}}$
+  \BLOCK{-endif-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\hline 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+\end{longtable}
+
+% TODO: Implement date correctly
+
+{\footnotesize
+\BLOCK{if ctx.footer.sources}
+    \textbf{Sources}: \\
+    \BLOCK{for f in ctx.footer.sources}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$ 
+        \BLOCK{-else-}
+-
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.notes}
+    \textbf{Notes}: \\
+    \BLOCK{for f in ctx.footer.notes}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+-
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.methods}
+    \textbf{Methods}: \\
+    \BLOCK{for f in ctx.footer.methods}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+-
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.years}
+    \textbf{Years}: \\
+    \BLOCK{for f in ctx.footer.years}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+-
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+}

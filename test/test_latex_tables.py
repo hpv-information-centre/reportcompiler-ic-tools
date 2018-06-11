@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from reportcompiler_ic_tools.tables import generate_table
+from reportcompiler_ic_tools.tables import generate_table_data
 from copy import deepcopy
 from pprint import pprint
 
@@ -54,8 +54,8 @@ class LatexTablesTest(unittest.TestCase):
         ])
 
         df.update(refs)
-        refed_data, ref_list = generate_table(df,
-                                              column_names=[
+        refed_data, ref_list = generate_table_data(df,
+                                                   column_names=[
                                                     'Country',
                                                     'HPV prevalence'
                                                     ])
@@ -78,8 +78,8 @@ class LatexTablesTest(unittest.TestCase):
         ])
 
         df.update(refs)
-        refed_data, ref_list = generate_table(df,
-                                              column_names=[
+        refed_data, ref_list = generate_table_data(df,
+                                                   column_names=[
                                                     'Country',
                                                     'HPV prevalence'
                                                     ])
@@ -103,7 +103,7 @@ class LatexTablesTest(unittest.TestCase):
         ])
 
         df.update(refs)
-        refed_data, ref_list = generate_table(
+        refed_data, ref_list = generate_table_data(
                                     df,
                                     row_id_column='prevalence',
                                     column_names=['Country', 'HPV prevalence'])
@@ -142,7 +142,7 @@ class LatexTablesTest(unittest.TestCase):
                                     for i in range(len(df['data'].index))]
         df['data'] = df['data'][['row_header', 'country', 'prevalence']]
 
-        refed_data, ref_list = generate_table(
+        refed_data, ref_list = generate_table_data(
                                 df,
                                 row_id_column='row_header',
                                 column_names=['Row header',
@@ -195,7 +195,7 @@ class LatexTablesTest(unittest.TestCase):
         ])
 
         df.update(refs)
-        refed_data, ref_list = generate_table(
+        refed_data, ref_list = generate_table_data(
                                     df,
                                     row_id_column='prevalence',
                                     column_names=['Country', 'HPV prevalence'])
