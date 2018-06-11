@@ -1,6 +1,10 @@
 """ Module for installing module as pip package """
 import os
 from setuptools import find_packages, setup
+import sys
+
+sys.path.insert(0, os.path.abspath(__file__))
+from reportcompiler_ic_tools import __version__
 
 module_name = 'reportcompiler-ic-tools'
 module_dir_name = 'reportcompiler_ic_tools'
@@ -34,7 +38,7 @@ for data_dir in data_dirs:
 
 setup(
     name=module_name,
-    version='0.3.0',
+    version=__version__,
     packages=find_packages('.', exclude=['test']),
     include_package_data=True,
     package_data={module_dir_name: data_files},
@@ -65,5 +69,10 @@ setup(
         'fiona',
         'geopandas',
         'pyproj'
+        'sphinx-autoapi',
+        'setuptools',
+        'sphinx',
+        'autoapi',
+        'sphinxcontrib-websupport'
     ],
 )

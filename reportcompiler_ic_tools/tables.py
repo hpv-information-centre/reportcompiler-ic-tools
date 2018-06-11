@@ -20,7 +20,10 @@ def generate_table_data(data_dict,
         meaning.
 
     :param dict data_dict: Dictionary returned by the IC data fetcher
-    :param list column_names: List with the column names in the dataframe
+    :param list selected_columns: List with the column names to be selected
+        from the original dataframe
+    :param list column_names: List with the column names of the selected
+        dataframes
     :param row_id_column: Column name that will contain the marks for row
         references
     :param str format: Format that the returned dataframe should comply with

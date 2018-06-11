@@ -15,15 +15,16 @@ from plotnine import ggplot, aes, scale_fill_brewer, scale_fill_gradient, \
     theme_bw, guide_legend
 from plotnine.geoms.geom_map import geom_map
 
+__all__ = ['generate_map', 'DEFAULT_TOLERANCES', 'DOT_THRESHOLD',
+           'REGION_BOUNDS', 'PROJECTION_DICT']
 
-# Pyproj projections
 PROJECTION_DICT = {
     'robinson': {
         'proj': 'robin'
     }
 }
+''' Pyproj projections. '''
 
-# Robinson coordinates, except Oceania (EPSG:4326)
 REGION_BOUNDS = {
     'XWX': (
         [-16000000, 8000000],
@@ -50,6 +51,7 @@ REGION_BOUNDS = {
         [-118.454180 + 360, -51.583946, ]
     ),
 }
+''' Robinson coordinates, except Oceania (EPSG:4326). '''
 
 DEFAULT_TOLERANCES = {
     'XWX': 40000,
@@ -57,11 +59,12 @@ DEFAULT_TOLERANCES = {
     'XMX': 40000,
     'XSX': 32000,
     'XEX': 13000,
-    'XOX': .4,
+    'XOX': .4,  # In EPSG:4326 coordinates
 }
+''' Default tolerances for polygon reduction in different regions. '''
 
-# A dot will be plotted for countries with areas below this value
 DOT_THRESHOLD = 35
+''' A dot will be plotted for countries with areas below this value. '''
 
 
 def generate_map(data,
@@ -76,6 +79,34 @@ def generate_map(data,
                  na_color='#aaaaaa',
                  line_color='#666666',
                  projection='robinson'):
+    """
+    This function returns a map plot with the specified options.
+
+    :param pandas.DataFrame data: Data to be plotted.
+    :param str region: Region to center the map around. Countries outside
+        the chosen region will be obscured.
+    :param str value_field: Column of *data* with the values to be plotted.
+    :param str iso_field: Column of *data* with the ISO3 codes for each
+        country.
+    :param dict scale_params: Dictionary of parameters to be passed to the
+        ggplot corresponding color scale (continuous or discrete).
+    :param bool plot_na_dots: Whether to plot the dots for small countries
+        if said country doesn't have data available.
+    :param int tolerance: Coordinate tolerance for polygon complexity
+        reduction, a higher number will result in simpler polygons and faster
+        rendering (see DEFAULT_TOLERANCES).
+    :param int plot_size: Size of the plot, which determines the relative sizes
+        of the elements within.
+    :param str out_region_color: Hex color of the countries that are out of the
+        specified region.
+    :param str na_color: Hex color of the countries with no data available.
+    :param str line_color: Color of the country borders.
+    :param str projection: Kind of map projection to be used in the map.
+        Currently, Oceania (XOX) is only available in ESPG:4326 to enable
+        wrapping.
+    :returns: a ggplot-like plot with the map
+    :rtype: plotnine.ggplot
+    """
     if scale_params is None:
         scale_params = {}
 
