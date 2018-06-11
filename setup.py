@@ -63,7 +63,7 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     install_requires=[
-        'reportcompiler-ic-fetcher',
+        # 'reportcompiler-ic-fetcher',
         'odictliteral',
         'plotnine',
         'fiona',
