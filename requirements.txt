@@ -1,0 +1,9 @@
+odictliteral
+plotnine
+fiona
+geopandas
+pyproj
+setuptools
+sphinx
+autoapi
+sphinxcontrib-websupport
