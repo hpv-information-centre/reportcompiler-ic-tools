@@ -68,7 +68,7 @@ setup(
         'plotnine',
         'fiona',
         'geopandas',
-        'pyproj'
+        'pyproj',
         'sphinx-autoapi',
         'setuptools',
         'sphinx',
