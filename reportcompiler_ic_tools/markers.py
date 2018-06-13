@@ -1,6 +1,9 @@
 import string
 
 
+__all__ = ['source_markers', 'note_markers', 'method_markers', 'year_markers']
+
+
 def source_markers():
     """ Returns the list of the source markers """
     values = [str(x) for x in range(1, 51)]
@@ -35,5 +38,3 @@ def year_markers():
         '\\Box'
     ]
     return iter(values)
-
-__all__ = ['source_markers', 'note_markers', 'method_markers', 'year_markers']

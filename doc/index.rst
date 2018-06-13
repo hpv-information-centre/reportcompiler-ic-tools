@@ -6,18 +6,18 @@
 Welcome to Report Compiler IC tool's documentation!
 ===================================================
 
-Contents:
+.. toctree::
+   :maxdepth: 1
+
+   getting_started.rst
+   tables.rst
+   maps.rst
+   markers.rst
 
 .. toctree::
-
-   reportcompiler_ic_tools/reportcompiler_ic_tools
-
-
-
-Indices and tables
-==================
+   :maxdepth: 1
+   
+   module_contents.rst
 
 * :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 

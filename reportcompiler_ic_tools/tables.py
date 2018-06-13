@@ -8,6 +8,8 @@ from odictliteral import odict
 from reportcompiler_ic_tools.markers import \
     source_markers, note_markers, method_markers, year_markers
 
+__all__ = ['generate_table_data']
+
 
 def generate_table_data(data_dict,
                         selected_columns=None,
@@ -239,5 +241,3 @@ def _build_cell_refs(marker_data, ref_data, table_footer, markers, ref_type):
                     table_footer.append((marker, ref))
                 if marker not in marker_data.loc[row_index, column]:
                     marker_data.loc[row_index, column].append(marker)
-
-__all__ = ['generate_references']
