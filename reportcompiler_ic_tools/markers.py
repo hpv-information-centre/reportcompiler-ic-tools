@@ -3,7 +3,7 @@ import string
 
 def source_markers():
     """ Returns the list of the source markers """
-    values = [str(x) for x in range(1, 50)]
+    values = [str(x) for x in range(1, 51)]
     return iter(values)
 
 
