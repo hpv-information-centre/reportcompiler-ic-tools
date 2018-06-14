@@ -1,6 +1,8 @@
 Report Compiler HPV Information Centre generator tools
 ######################################################
 
+|docs|
+
 The Report Compiler HPV Information Centre generator tools provide methods to easily take advantage 
 of the data fetched by the Report Compiler IC Fetcher in a context generation module using python. 
 This includes an easier way to generate latex tables and figures with the appropriate annotations
@@ -13,6 +15,11 @@ and will be used in our report generation tasks.
    :height: 50px
    :align: center
    :target: http://www.hpvcentre.net
+
+.. |docs| image:: https://readthedocs.org/projects/reportcompiler-ic-tools-python/badge/?version=stable
+    :alt: Documentation Status
+    :scale: 100%
+    :target: https://reportcompiler-ic-tools-python.readthedocs.io/en/stable/?badge=stable
 
 Features
 ============

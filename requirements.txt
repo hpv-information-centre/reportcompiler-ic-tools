@@ -1,5 +1,5 @@
 odictliteral
-plotnine
+git+git://github.com/has2k1/plotnine@dev
 fiona
 geopandas
 pyproj
