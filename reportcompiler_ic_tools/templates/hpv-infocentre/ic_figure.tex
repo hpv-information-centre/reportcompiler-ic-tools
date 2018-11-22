@@ -1,0 +1,61 @@
+\begin{figure}
+  \caption{\VAR{ctx.caption}}
+  \centering
+    \includegraphics[width=\VAR{ctx.image_width or '1'}\textwidth]{\VAR{ctx.image_path}}
+\end{figure}
+
+% TODO: Implement date correctly
+
+{\footnotesize
+\BLOCK{if ctx.footer.sources}
+    \textbf{Sources}: \\
+    \BLOCK{for f in ctx.footer.sources}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$ 
+        \BLOCK{-else-}
+-
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.notes}
+    \textbf{Notes}: \\
+    \BLOCK{for f in ctx.footer.notes}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+-
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.methods}
+    \textbf{Methods}: \\
+    \BLOCK{for f in ctx.footer.methods}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+-
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+
+\BLOCK{if ctx.footer.years}
+    \textbf{Years}: \\
+    \BLOCK{for f in ctx.footer.years}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+-
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+    \\
+\BLOCK{endif}
+}
