@@ -13,6 +13,7 @@ Welcome to Report Compiler IC tool's documentation!
    tables.rst
    maps.rst
    markers.rst
+   templates.rst
 
 .. toctree::
    :maxdepth: 1

@@ -106,14 +106,14 @@ def generate_table_data(data_dict,
                    for name, markers
                    in zip(column_names, column_markers)]
 
-    # TODO: Implement dates
-
     referenced_table = _zip_table(data, marker_data, format)
     referenced_table = referenced_table[selected_columns]
     for ref_type, _ in ref_types.items():
         table_footer[ref_type] = [{'marker': _marker, 'text': _ref}
                                   for _marker, _ref
                                   in table_footer[ref_type]]
+
+    table_footer['date'] = data_dict['date']
 
     return (referenced_table, column_info, table_footer)
 

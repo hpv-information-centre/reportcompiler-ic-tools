@@ -4,9 +4,20 @@
     \includegraphics[width=\VAR{ctx.image_width or '1'}\textwidth]{\VAR{ctx.image_path}}
 \end{figure}
 
-% TODO: Implement date correctly
-
 {\footnotesize
+\BLOCK{if ctx.footer.date.date_accessed}
+% External data source
+\textbf{Original publication: 
+\VAR{ctx.footer.date.date_closing | format_date('%e %b %Y')}} \\
+\textbf{Last accessed:
+\VAR{ctx.footer.date.date_accessed | format_date('%e %b %Y')}} \\
+\BLOCK{-else}
+% Internal data source
+\textbf{Closing database date: 
+\VAR{ctx.footer.date.date_closing | format_date('%e %b %Y')}} \\
+\textbf{First publication date:
+\VAR{ctx.footer.date.date_publication | format_date('%e %b %Y')}} \\
+\BLOCK{-endif}
 \BLOCK{if ctx.footer.sources}
     \textbf{Sources}: \\
     \BLOCK{for f in ctx.footer.sources}
