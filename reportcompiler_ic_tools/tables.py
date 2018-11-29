@@ -102,7 +102,7 @@ def generate_table_data(data_dict,
                          markers,
                          ref_type)
 
-    column_info = [{'name': name, 'markers': markers}
+    column_info = [{'value': name, 'markers': markers}
                    for name, markers
                    in zip(column_names, column_markers)]
 
