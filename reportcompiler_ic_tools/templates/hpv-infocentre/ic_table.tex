@@ -13,7 +13,7 @@
 \rowcolor{ColorTable}
 \BLOCK{for c in ctx.columns -}
     \textbf{
-        \VAR{-c.name | escape_tex-}
+        \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
             $^{\VAR{c.markers | join(',')}}$
         \BLOCK{-endif-}
