@@ -1,7 +1,7 @@
 \begin{figure}
   \caption{\VAR{ctx.caption}}
   \centering
-    \includegraphics[width=\VAR{ctx.image_width or '1'}\textwidth]{\VAR{ctx.image_path}}
+    \includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path}}
 \end{figure}
 
 {\footnotesize
