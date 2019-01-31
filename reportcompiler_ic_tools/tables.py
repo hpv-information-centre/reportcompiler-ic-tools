@@ -54,7 +54,7 @@ def generate_table_data(data_dict,
             'Selected columns must be included in the original dataframe'
         )
     data = data[selected_columns]
-    ref_types = odict[
+    ref_type_markers = odict[
         'sources': source_markers(),
         'notes': note_markers(),
         'methods': method_markers(),
@@ -76,7 +76,7 @@ def generate_table_data(data_dict,
     }
 
     column_markers = [[] for col in selected_columns]
-    for ref_type, markers in ref_types.items():
+    for ref_type, markers in ref_type_markers.items():
         ref_data = data_dict[ref_type]
         _build_global_refs(ref_data['global'],
                            table_footer[ref_type],
@@ -108,14 +108,21 @@ def generate_table_data(data_dict,
 
     referenced_table = _zip_table(data, marker_data, format)
     referenced_table = referenced_table[selected_columns]
-    for ref_type, _ in ref_types.items():
+    for ref_type, _ in ref_type_markers.items():
         table_footer[ref_type] = [{'marker': _marker, 'text': _ref}
                                   for _marker, _ref
                                   in table_footer[ref_type]]
 
     table_footer['date'] = data_dict['date']
 
-    return (referenced_table, column_info, table_footer)
+    info_dict = {
+        'table': referenced_table,
+        'columns': column_info,
+        'footer': table_footer,
+        'markers': ref_type_markers
+    }
+
+    return info_dict
 
 
 def _zip_table(data, marker_data, format):
