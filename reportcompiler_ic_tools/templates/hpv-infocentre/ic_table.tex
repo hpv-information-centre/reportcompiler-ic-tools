@@ -13,7 +13,7 @@
 \rowcolor{ColorTable}
 \BLOCK{for c in ctx.columns -}
     \textbf{
-        \VAR{-c.name | escape_tex-}
+        \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
             $^{\VAR{c.markers | join(',')}}$
         \BLOCK{-endif-}
@@ -27,7 +27,7 @@
 \rowcolor{ColorTable}
 \BLOCK{for c in ctx.columns -}
     \textbf{
-        \VAR{-c.name | escape_tex-}
+        \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
             $^{\VAR{c.markers | join(',')}}$
         \BLOCK{-endif-}
@@ -44,6 +44,7 @@
 
 \BLOCK{for row in ctx.data.values-}
  \BLOCK{-for cell in row -}
+  \BLOCK{-if cell.color-} \textbox{\icgradient{cell.color}} \BLOCK{-endif-}
   \VAR{-cell.value | escape_tex-}
   \BLOCK{-if cell.markers-}
     $^{\VAR{-cell.markers | join(',')-}}$
@@ -58,58 +59,4 @@
 \BLOCK{endfor-}
 \end{longtable}
 
-% TODO: Implement date correctly
-
-{\footnotesize
-\BLOCK{if ctx.footer.sources}
-    \textbf{Sources}: \\
-    \BLOCK{for f in ctx.footer.sources}
-        \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$ 
-        \BLOCK{-else-}
--
-        \BLOCK{-endif}
- \VAR{f.text | escape_tex} \\
-    \BLOCK{endfor}
-    \\
-\BLOCK{endif}
-
-\BLOCK{if ctx.footer.notes}
-    \textbf{Notes}: \\
-    \BLOCK{for f in ctx.footer.notes}
-        \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
-        \BLOCK{-else-}
--
-        \BLOCK{-endif}
- \VAR{f.text | escape_tex} \\
-    \BLOCK{endfor}
-    \\
-\BLOCK{endif}
-
-\BLOCK{if ctx.footer.methods}
-    \textbf{Methods}: \\
-    \BLOCK{for f in ctx.footer.methods}
-        \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
-        \BLOCK{-else-}
--
-        \BLOCK{-endif}
- \VAR{f.text | escape_tex} \\
-    \BLOCK{endfor}
-    \\
-\BLOCK{endif}
-
-\BLOCK{if ctx.footer.years}
-    \textbf{Years}: \\
-    \BLOCK{for f in ctx.footer.years}
-        \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
-        \BLOCK{-else-}
--
-        \BLOCK{-endif}
- \VAR{f.text | escape_tex} \\
-    \BLOCK{endfor}
-    \\
-\BLOCK{endif}
-}
+\BLOCK{include '/hpv-infocentre/ic_references.tex'}
