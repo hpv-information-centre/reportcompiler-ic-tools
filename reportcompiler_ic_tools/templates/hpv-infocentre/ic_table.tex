@@ -44,6 +44,7 @@
 
 \BLOCK{for row in ctx.data.values-}
  \BLOCK{-for cell in row -}
+  \BLOCK{-if cell.color-} \textbox{\icgradient{cell.color}} \BLOCK{-endif-}
   \VAR{-cell.value | escape_tex-}
   \BLOCK{-if cell.markers-}
     $^{\VAR{-cell.markers | join(',')-}}$

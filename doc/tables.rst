@@ -19,6 +19,7 @@ It returns a dictionary with four items:
 
    * **value**: The original value of the cell; e.g. "Spain".
    * **markers**: A list with the markers that should be displayed in that cell; e.g. ['a', 'b', '1'].
+   * **color**: (Optional) The fill color of that cell; e.g. '#ff0000'.
 
 * **columns**: A list of the column names that should go into the table header, along with the associated reference markers. Each item is a dictionary with two values:
 
