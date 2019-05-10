@@ -5,13 +5,14 @@ Table generation
 
 Using the regular `Report Compiler`_ library, a data fetcher usually returns (a collection of) dataframes to be processed. With the addition of the `Report Compiler IC Fetcher`_, these dataframes are returned with additional information relevant to our data: sources, notes, methods, years of estimates and dates. Furthermore, these references can be applied globally, in a row, in a column or in a cell. This utility library provides the ``generate_table_data`` function to assist in all this formatting to a document table.
 
-This function accepts five parameters:
+This function accepts the following parameters:
 
 * **data_dict**: The data dictionary as returned by the `Report Compiler IC Fetcher`_ (mandatory). In case the source dataframe needs to be built manually (e.g. for customized tables) and the references are not necessary, the utils module includes a ``wrap_empty_references`` as a convenience shortcut to obtain this dictionary. For more information on the structure of this dictionary please check its documentation.
 * **selected_columns**: Column names from ``data_dict['data']`` that will be shown in the output table. By default all columns will be shown but in the case of ID columns, even if it is necessary their presence to index possible references, it is probably not desirable to show them.
 * **column_names**: Display names of the columns as will be shown in the document table header. Its length must be equal to the *selected_columns* parameter's length.
 * **row_id_column**: Column that will be used as the representative of the row for referencing purposes. This column will contain the reference markers associated with that row. For example, a table about different study indicators might have the name of the study as the *row_id_column*. By default the first column is chosen.
 * **format**: Format of the output table. This is necessary mostly for the syntax that will be used when attaching markers to the table values. By default the format is 'latex' (the only one currently implemented).
+* **collapse_refs**: Whether markers should be collapsed into more a more compact format. Currently this transforms a cell markers appearing in each cell in a column into a column header marker, removing it from the cells. True by default.
 
 It returns a dictionary with four items:
 

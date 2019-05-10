@@ -3,6 +3,7 @@ This module contains helper functions to create tables with the Information
 Centre data.
 """
 import pandas as pd
+import numpy as np
 from pprint import pprint
 from odictliteral import odict
 from reportcompiler_ic_tools.markers import \
@@ -15,7 +16,8 @@ def generate_table_data(data_dict,
                         selected_columns=None,
                         column_names=None,
                         row_id_column=None,
-                        format='latex'):
+                        format='latex',
+                        collapse_refs=True):
     """
     Generates a new dataframe with the markers corresponding to the defined
         references (sources, notes, ...), alongside a list of the markers'
@@ -29,6 +31,8 @@ def generate_table_data(data_dict,
     :param row_id_column: Column name that will contain the marks for row
         references
     :param str format: Format that the returned dataframe should comply with
+    :param bool collapse_refs: Whether markers should be collapsed when
+        appropriate (e.g. all cells of a column to the column header)
     :returns: Tuple (data, columns, references), where data is the original
         dataframe with the necessary reference markers, columns is the list
         with the table columns as will be displayed and references is a nested
@@ -108,6 +112,10 @@ def generate_table_data(data_dict,
 
     referenced_table = _zip_table(data, marker_data, format)
     referenced_table = referenced_table[selected_columns]
+
+    if collapse_refs:
+        _collapse_common_refs(referenced_table, column_info)
+
     for ref_type, _ in ref_type_markers.items():
         table_footer[ref_type] = [{'marker': _marker, 'text': _ref}
                                   for _marker, _ref
@@ -123,6 +131,21 @@ def generate_table_data(data_dict,
     }
 
     return info_dict
+
+
+def _collapse_common_refs(table, columns):
+    for i, col in enumerate(table.columns):
+        markers = [cell['markers'] for cell in table[col]]
+        col_markers = set([ref
+                           for cell_markers in markers
+                           for ref in cell_markers])
+        for marker in col_markers:
+            if (np.all([marker in cell['markers'] for cell in table[col]])):
+                # Include marker in column
+                columns[i]['markers'] += marker
+                # Remove markers from cells
+                for cell in table[col]:
+                    cell['markers'].remove(marker)
 
 
 def _zip_table(data, marker_data, format):
