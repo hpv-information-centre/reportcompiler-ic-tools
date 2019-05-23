@@ -27,8 +27,8 @@ def generate_table_data(data_dict,
     :param list selected_columns: List with the column names to be selected
         from the original dataframe
     :param list column_names: List with the column names of the selected
-        dataframes
-    :param row_id_column: Column name that will contain the marks for row
+        dataframe columns
+    :param str row_id_column: Column name that will contain the marks for row
         references
     :param str format: Format that the returned dataframe should comply with
     :param bool collapse_refs: Whether markers should be collapsed when
@@ -86,25 +86,25 @@ def generate_table_data(data_dict,
                            table_footer[ref_type],
                            markers,
                            ref_type)
-        _column_markers = _build_column_refs(marker_data,
-                                             selected_columns,
-                                             column_names,
-                                             ref_data['column'],
+        _column_markers = _build_column_refs(ref_data['column'],
                                              table_footer[ref_type],
-                                             markers, ref_type)
+                                             markers, ref_type,
+                                             marker_data,
+                                             selected_columns,
+                                             column_names)
         for i, col in enumerate(column_markers):
             column_markers[i].extend(_column_markers[i])
-        _build_row_refs(marker_data,
-                        ref_data['row'],
-                        row_id_column,
+        _build_row_refs(ref_data['row'],
                         table_footer[ref_type],
                         markers,
-                        ref_type)
-        _build_cell_refs(marker_data,
-                         ref_data['cell'],
+                        ref_type,
+                        marker_data,
+                        row_id_column)
+        _build_cell_refs(ref_data['cell'],
                          table_footer[ref_type],
                          markers,
-                         ref_type)
+                         ref_type,
+                         marker_data)
 
     column_info = [{'value': name, 'markers': markers}
                    for name, markers
@@ -180,13 +180,13 @@ def _build_global_refs(ref_data, table_footer, markers, ref_type):
             table_footer.append(('', ref))
 
 
-def _build_column_refs(marker_data,
-                       selected_columns,
-                       column_names,
-                       ref_data,
+def _build_column_refs(ref_data,
                        table_footer,
                        markers,
-                       ref_type):
+                       ref_type,
+                       marker_data,
+                       selected_columns,
+                       column_names):
     column_markers = []
     for column in selected_columns:
         refs = [ref.text
@@ -215,12 +215,12 @@ def _build_column_refs(marker_data,
     return column_markers
 
 
-def _build_row_refs(marker_data,
-                    ref_data,
-                    row_id_column,
+def _build_row_refs(ref_data,
                     table_footer,
                     markers,
-                    ref_type):
+                    ref_type,
+                    marker_data,
+                    row_id_column):
     for row_index in marker_data.index:
         refs = [ref.text
                 for ref in ref_data.itertuples()
@@ -246,7 +246,7 @@ def _build_row_refs(marker_data,
                 row_markers.append(marker)
 
 
-def _build_cell_refs(marker_data, ref_data, table_footer, markers, ref_type):
+def _build_cell_refs(ref_data, table_footer, markers, ref_type, marker_data):
     for row_index in marker_data.index:
         for column in marker_data.columns:
             refs = [ref.text
