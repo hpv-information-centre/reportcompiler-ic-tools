@@ -116,7 +116,7 @@ def generate_map(data,
                  out_region_color='#f0f0f0',
                  na_color='#aaaaaa',
                  line_color='#666666',
-                 projection='robinson'):
+                 projection=None):
     """
     This function returns a map plot with the specified options.
 
@@ -145,6 +145,12 @@ def generate_map(data,
     :returns: a ggplot-like plot with the map
     :rtype: plotnine.ggplot
     """
+    if projection is None:
+        if region == 'XOX':
+            projection = 'epsg4326'
+        else:
+            projection = 'robinson'
+
     if projection not in PROJECTION_DICT.keys():
         raise ValueError('Projection "{}" not valid'.format(projection))
 
@@ -269,9 +275,14 @@ def generate_map(data,
            scale_y_continuous(breaks=[], limits=limits_y) +
            theme(figure_size=(plot_size*ratio, plot_size),
                  panel_background=element_rect(fill='white', color='black'),
-                 panel_border=element_rect(fill='white',
-                                           color='black',
-                                           size=.1)
+                 #  panel_border=element_rect(fill='white',
+                 #                            color='black',
+                 #                            size=.1),
+                 legend_background=element_rect(
+                     fill="white",
+                     color='black',
+                     size=.5),
+                 legend_box_just='left'
                  ) +
            xlab('') + ylab('')
           )
@@ -287,4 +298,7 @@ def generate_map(data,
     if plot_data[value_field].dtype == 'object':
         plt += guides(fill=guide_legend(override_aes={'shape': None}))
 
-    return plt
+    return {
+        'plot': plt,
+        'ratio': ratio,
+    }
