@@ -13,6 +13,8 @@ This function accepts the following parameters:
 * **row_id_column**: Column that will be used as the representative of the row for referencing purposes. This column will contain the reference markers associated with that row. For example, a table about different study indicators might have the name of the study as the *row_id_column*. By default the first column is chosen.
 * **format**: Format of the output table. This is necessary mostly for the syntax that will be used when attaching markers to the table values. By default the format is 'latex' (the only one currently implemented).
 * **collapse_refs**: Whether markers should be collapsed into more a more compact format. Currently this transforms a cell markers appearing in each cell in a column into a column header marker, removing it from the cells. True by default.
+* **footer**: Dictionary with the footer information as returned from previous calls to this same function. This allows chaining several data sources in one single footer.
+* **markers**: Dictionary with generators for markers for each type of reference ('sources', 'notes', 'methods', 'years'). If None, new generators will be initialized (starting at 1 with sources, 'a' with notes, ...). An existing dictionary can be passed as parameter when chaining different tables (e.g. from different data sources). If not None, a *footer* parameter should be passed as well.
 
 It returns a dictionary with four items:
 
