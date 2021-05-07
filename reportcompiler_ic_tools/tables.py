@@ -18,6 +18,7 @@ def generate_table_data(data_dict,
                         row_id_column=None,
                         format='latex',
                         collapse_refs=True,
+                        ref_type_markers=None,
                         footer=None,
                         markers=None):
     """
