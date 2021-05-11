@@ -1,4 +1,4 @@
-{\small
+{\scriptsize
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -19,10 +19,10 @@
     \BLOCK{-else-}
         \BLOCK{-for c in ctx.columns-}
 			\BLOCK{-if loop.first-}
-			L{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			\VAR{-c.align | escape_tex-}{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
 			\BLOCK{-else-}
 			{\color{white}\vrule width 1pt}
-			C{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			\VAR{-c.align | escape_tex-}{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
 			\BLOCK{endif-}
         \BLOCK{-endfor-}
     \BLOCK{endif-}
@@ -34,7 +34,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{{\VAR{c.markers | join(',')}}}$
+            \ts{{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -48,7 +48,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{\VAR{c.markers | join(',')}}$
+            \ts{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -61,12 +61,19 @@
 
 \endlastfoot
 
+\arrayrulecolor{white}\hline 
+\arrayrulecolor{white}\hline 
+\arrayrulecolor{white}\hline 
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV prevalence and HPV type distribution for cytologically normal women}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews and meta-analysis performed by ICO. The ICO HPV Information Centre has updated data until June 2014. Reference publications: 1) Bruni L, J Infect Dis 2010; 202: 1789. 2) De Sanjosé S, Lancet Infect Dis 2007; 7: 453 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
 \BLOCK{for row in ctx.data.values-}
  \BLOCK{-for cell in row -}
-  \VAR{-cell.value | escape_tex-}
-  \BLOCK{-if cell.markers-}
-    $^{\VAR{-cell.markers | join(',')-}}$
-  \BLOCK{-endif-}
+  \VAR{-cell | escape_tex-}
   \BLOCK{-if not loop.last-}
     \VAR{-' & '-}
   \BLOCK{-else}
@@ -78,5 +85,3 @@
 \DefEndTable
 \end{longtable}
 }
-\BLOCK{include '/hpv-infocentre/ic_references.tex'}
-\normalsize

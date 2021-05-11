@@ -6,7 +6,7 @@ __all__ = ['source_markers', 'note_markers', 'method_markers', 'year_markers']
 
 def source_markers():
     """ Returns the list of the source markers """
-    values = [str(x) for x in range(1, 51)]
+    values = [str(x) for x in range(1, 501)]
     return iter(values)
 
 

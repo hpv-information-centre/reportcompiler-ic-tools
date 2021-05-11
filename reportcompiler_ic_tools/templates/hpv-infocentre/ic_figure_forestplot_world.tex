@@ -1,0 +1,18 @@
+\BLOCK{for ctx in ctx.data}
+	\begin{figure}[H]
+		 \BLOCK{if loop.first}
+			\caption{\VAR{ctx.caption}}
+        \BLOCK{-else-}
+			\addtocounter{figure}{-1}
+			\caption{\VAR{ctx.caption2}}
+        \BLOCK{-endif}
+	  \centering
+		\fbox{\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path | escape_path}}}
+		\BLOCK{if ctx.label is defined}
+			\label{fig:\VAR{ctx.label | escape_tex}}
+		\BLOCK{endif}
+	\end{figure}
+
+	\BLOCK{include '/hpv-infocentre/ic_references_papiloma.tex'}
+	\clearpage
+\BLOCK{endfor}

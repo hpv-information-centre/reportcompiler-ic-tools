@@ -1,0 +1,78 @@
+\begin{table}[hb!]
+\scriptsize
+\captionsetup{margin=0pt}
+\caption{\VAR{ctx.caption}}
+{\renewcommand*{\arraystretch}{1.1} % Vertical space for rows: 1.5 ==> 50% greater
+\newcolumntype{M}{>{\centering\arraybackslash} p{3.4cm} }
+\arrayrulecolor{ColorTable}
+\begin{tabularx}{\textwidth}{X@{}p{4.5cm}@{}c|@{}M@{}|@{}M@{}|@{}M@{}X}
+\DefBeginTable
+	 \multicolumn{3}{>{\columncolor{ColorTable}}l!{\color{white}\Vrule}}{\centering \textbf{INDICATOR}} & %
+	 \multicolumn{1}{>{\columncolor{ColorTable}}c!{\color{white}\Vrule}}{\centering \textbf{MALE}} &%
+	 \multicolumn{1}{>{\columncolor{ColorTable}}c!{\color{white}\Vrule}}{\centering \textbf{FEMALE}} &%
+	 \multicolumn{2}{>{\columncolor{ColorTable}}c}{\centering \textbf{TOTAL \ \ \ \ }} \\ \multicolumn{3}{>{\columncolor{ColorTable2}}l}{\textbf{ Smoking }} & \multicolumn{4}{l}{} \\
+\cline{4-6}
+ &\multirow{2}{4.5cm}{Smoking of any tobacco adjusted prevalence (\%) [95\% UI]}&Current\ts{\VAR{ctx.table_data.smoking.markers.smoking_current_markers}}&\VAR{ctx.table_data.smoking.smoking_men_current}&\VAR{ctx.table_data.smoking.smoking_women_current}&\VAR{ctx.table_data.smoking.smoking_both_current}&\\
+\cline{3-6}
+ &&Daily\ts{\VAR{ctx.table_data.smoking.markers.smoking_daily_markers}}&\VAR{ctx.table_data.smoking.smoking_men_daly}&\VAR{ctx.table_data.smoking.smoking_women_daly}&\VAR{ctx.table_data.smoking.smoking_both_daly}&\\
+\cline{2-6}
+ &\multirow{2}{4.5cm}{Cigarette smoking adjusted  prevalence (\%) [95\% UI]}&Current\ts{\VAR{ctx.table_data.smoking.markers.cigarette_current_markers}}&\VAR{ctx.table_data.smoking.cigars_men_current}&\VAR{ctx.table_data.smoking.cigars_women_current}&\VAR{ctx.table_data.smoking.cigars_both_current}&\\
+\cline{3-6}
+ &&Daily\ts{\VAR{ctx.table_data.smoking.markers.cigarette_daily_markers}}&\VAR{ctx.table_data.smoking.cigars_men_daly}&\VAR{ctx.table_data.smoking.cigars_women_daly}&\VAR{ctx.table_data.smoking.cigars_both_daly}&\\
+\cline{2-6}
+ 
+\\ \multicolumn{3}{>{\columncolor{ColorTable2}}l}{\textbf{Parity}} & \multicolumn{4}{l}{} \\
+\cline{4-6}
+&\multicolumn{2}{@{}p{6cm}|}{Total fertility rate per woman\ts{\VAR{ctx.table_data.parity.markers.parity_markers}}}&-&\VAR{ctx.table_data.parity.parity}&-&\\
+\cline{2-6}
+&\multirow{7}{3.5cm}{Age-specific fertility rate (per 1000 women)}&15-19 yrs\ts{\VAR{ctx.table_data.parity.markers.parity_markers}}&-&\VAR{ctx.table_data.parity.parity_15_19}&-&\\
+\cline{3-6}
+ 
+&&20-24 yrs\ts{\VAR{ctx.table_data.parity.markers.parity_markers}}&-&\VAR{ctx.table_data.parity.parity_20_24}&-&\\
+\cline{3-6}
+ 
+&&25-29 yrs\ts{\VAR{ctx.table_data.parity.markers.parity_markers}}&-&\VAR{ctx.table_data.parity.parity_25_29}&-&\\
+\cline{3-6}
+ 
+&&30-34 yrs\ts{\VAR{ctx.table_data.parity.markers.parity_markers}}&-&\VAR{ctx.table_data.parity.parity_30_34}&-&\\
+\cline{3-6}
+ 
+&&35-39 yrs\ts{\VAR{ctx.table_data.parity.markers.parity_markers}}&-&\VAR{ctx.table_data.parity.parity_35_39}&-&\\
+\cline{3-6}
+ 
+&&40-44 yrs\ts{\VAR{ctx.table_data.parity.markers.parity_markers}}&-&\VAR{ctx.table_data.parity.parity_40_44}&-&\\
+\cline{3-6}
+ 
+&&45-49 yrs\ts{\VAR{ctx.table_data.parity.markers.parity_markers}}&-&\VAR{ctx.table_data.parity.parity_45_49}&-&\\
+\cline{2-6}
+ 
+\\ \multicolumn{3}{>{\columncolor{ColorTable2}}l}{\textbf{Hormonal contraception}} & \multicolumn{4}{l}{} \\
+\cline{4-6}
+ 
+&\multicolumn{2}{@{}p{6cm}|}{Oral contraceptive use (\%) among women who are married or in union}\ts{\VAR{ctx.table_data.hormonal.markers.oral_markers}}&-&\VAR{ctx.table_data.hormonal.oral}&-&\\
+\cline{2-6}
+&\multicolumn{2}{@{}p{6cm}|}{Injectable contraception use (\%) among women who are married or in union}\ts{\VAR{ctx.table_data.hormonal.markers.injectable_markers}}&-&\VAR{ctx.table_data.hormonal.injectable}&-&\\
+\cline{2-6}
+&\multicolumn{2}{@{}p{6cm}|}{Implant contraceptive use (\%) among women who are married or in union}\ts{\VAR{ctx.table_data.hormonal.markers.implant_markers}}&-&\VAR{ctx.table_data.hormonal.implant}&-&\\
+\cline{2-6}
+\\ \multicolumn{3}{>{\columncolor{ColorTable2}}l}{\textbf{ HIV }} & \multicolumn{4}{l}{} \\
+\cline{4-6}
+&\multicolumn{2}{@{}p{6cm}|}{Estimated percent of adults aged 15-49 who are living with HIV [95\% UI]\ts{\VAR{ctx.table_data.hiv.markers.hiv_15_49_markers}}}&\VAR{ctx.table_data.hiv.hiv_15_49_men}&\VAR{ctx.table_data.hiv.hiv_15_49_fem}&\VAR{ctx.table_data.hiv.hiv_15_49_all}&\\
+\cline{2-6}
+&\multicolumn{2}{@{}p{6cm}|}{Estimated percent of young adults aged 15-24 who are living with HIV [95\% UI]\ts{\VAR{ctx.table_data.hiv.markers.hiv_15_24_markers}}}&\VAR{ctx.table_data.hiv.hiv_15_24_men}&\VAR{ctx.table_data.hiv.hiv_15_24_fem}&\VAR{ctx.table_data.hiv.hiv_15_24_all}&\\
+\cline{2-6}
+&\multicolumn{2}{@{}p{6cm}|}{HIV prevalence (\%) among sex workers\ts{\VAR{ctx.table_data.hiv.markers.hiv_sex_markers}}}&\VAR{ctx.table_data.hiv.hiv_sex_men}&\VAR{ctx.table_data.hiv.hiv_sex_fem}&\VAR{ctx.table_data.hiv.hiv_sex_all}&\\
+\cline{2-6}
+&\multicolumn{2}{@{}p{6cm}|}{HIV prevalence (\%) among men who have sex with men\ts{\VAR{ctx.table_data.hiv.markers.hiv_msm_markers}}}&\VAR{ctx.table_data.hiv.hiv_msm}&-&\VAR{ctx.table_data.hiv.hiv_msm}&\\
+\cline{2-6}
+&\multicolumn{2}{@{}p{6cm}|}{Estimated number of people living with HIV [95\% UI]\ts{\VAR{ctx.table_data.hiv.markers.hiv_num_markers}}}&-&-&\VAR{ctx.table_data.hiv.hiv_num_all}&\\
+\cline{2-6}
+&\multicolumn{2}{@{}p{6cm}|}{Estimated number of adults (15+ yrs) living with HIV [95\% UI]\ts{\VAR{ctx.table_data.hiv.markers.hiv_num_15_markers}}}&\VAR{ctx.table_data.hiv.hiv_num_15_men}&\VAR{ctx.table_data.hiv.hiv_num_15_fem}&\VAR{ctx.table_data.hiv.hiv_num_15_all}&\\
+\cline{2-6}
+&\multicolumn{2}{@{}p{6cm}|}{Estimated number of AIDS-related deaths [95\% UI]\ts{\VAR{ctx.table_data.hiv.markers.hiv_num_d_markers}}}&-&-&\VAR{ctx.table_data.hiv.hiv_num_d}&\\
+\cline{2-6}
+\DefEndTable
+\end{tabularx}}
+\end{table}
+\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+\clearpage

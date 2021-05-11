@@ -1,0 +1,133 @@
+{\scriptsize
+\newcommand*{\DefLineTable}{\hhline{
+\BLOCK{-for c in ctx.columns-}
+	\BLOCK{-if loop.first-}
+		>{\arrayrulecolor{ColorTable}}-
+	\BLOCK{-else-}
+		>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+	\BLOCK{endif-}
+\BLOCK{-endfor-}}
+}
+
+\newcommand*{\DefLineTableWW}{\hhline{>{\arrayrulecolor{ColorTable}}->{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{white}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{white}}-%
+}
+}
+
+\newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{
+    \BLOCK{-if 'table_latex' in ctx and 'column_spec' in ctx.table_latex-}
+        \VAR{-ctx.table_latex.column_spec-}
+    \BLOCK{-else-}
+        \BLOCK{-for c in ctx.columns-}
+			\BLOCK{-if loop.first-}
+			L{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			\BLOCK{-else-}
+			{\color{white}\vrule width 1pt}
+			C{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			\BLOCK{endif-}
+        \BLOCK{-endfor-}
+    \BLOCK{endif-}
+}
+\caption{\VAR{ctx.caption}} \\
+
+
+
+\rowcolor{ColorTable}
+\textbf{} & \textbf{} & \textbf{} & \textbf{} & \textbf{} & \textbf{} & \multicolumn{2}{c}{\textbf{Ranking}}\\
+\arrayrulecolor{ColorTable}\DefLineTableWW 
+\rowcolor{ColorTable}
+\BLOCK{for c in ctx.columns -}
+    \textbf{
+        \VAR{-c.value | escape_tex-}
+        \BLOCK{-if c.markers-}
+            $^{{\VAR{c.markers | join(',')}}}$
+        \BLOCK{-endif-}
+    } 
+        \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
+\BLOCK{- endfor} 
+\endfirsthead
+
+\multicolumn{\VAR{ctx.columns | length}}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\rowcolor{ColorTable}
+\textbf{} & \textbf{} & \textbf{} & \textbf{} & \textbf{} & \textbf{} & \multicolumn{2}{c}{\textbf{Ranking}}\\
+\arrayrulecolor{ColorTable}\DefLineTableWW 
+\rowcolor{ColorTable}
+\BLOCK{for c in ctx.columns -}
+    \textbf{
+        \VAR{-c.value | escape_tex-}
+        \BLOCK{-if c.markers-}
+            $^{\VAR{c.markers | join(',')}}$
+        \BLOCK{-endif-}
+    } 
+        \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
+\BLOCK{- endfor} 
+\endhead
+
+\arrayrulecolor{ColorTable}\hline 
+\multicolumn{\VAR{ctx.columns | length}}{r}{{Continued on next page}} \\
+\endfoot
+
+\endlastfoot
+
+\BLOCK{for row in ctx.data.values-}
+	\BLOCK{-for cell in row -}
+	
+		\BLOCK{if cell.bold is defined}
+			\BLOCK{if cell.bold == 1}
+				\textbf{\VAR{-cell.value | escape_tex-}}
+			\BLOCK{elif cell.bold == 0}
+				\hspace{5mm}\VAR{-cell.value | escape_tex-}
+			\BLOCK{endif}
+		\BLOCK{else}
+			\BLOCK{if cell.color is defined}
+				\BLOCK{if cell.color == 1}
+					\cellcolor{asr1!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{elif cell.color == 2}
+					\cellcolor{asr2!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{elif cell.color == 3}
+					\cellcolor{asr3!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{elif cell.color == 4}
+					\cellcolor{asr4!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{elif cell.color == 5}
+					\cellcolor{asr5!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{else}
+					\VAR{-cell.value | escape_tex-}
+				\BLOCK{endif}
+			\BLOCK{else}
+				\VAR{-cell.value | escape_tex-}
+			\BLOCK{endif}
+		\BLOCK{endif}
+		
+		\BLOCK{-if cell.markers-}
+			$^{\VAR{-cell.markers | join(',')-}}$
+		\BLOCK{-endif-}
+		\BLOCK{-if not loop.last-}
+			\VAR{-' & '-}
+		\BLOCK{-else}
+		\\
+		\arrayrulecolor{ColorTable}\DefLineTable 
+		\BLOCK{endif-}
+	\BLOCK{-endfor-}
+\BLOCK{endfor-}
+\DefEndTable
+\end{longtable}
+}
+\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+\normalsize

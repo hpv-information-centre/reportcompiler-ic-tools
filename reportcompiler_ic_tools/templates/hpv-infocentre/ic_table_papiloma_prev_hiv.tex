@@ -1,4 +1,4 @@
-{\small
+{\scriptsize
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -12,6 +12,20 @@
 
 \newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+
+\newcommand*{\DefLineTableWW}{\hhline{>{\arrayrulecolor{ColorTable}}->{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{white}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{white}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+}
+}
 
 \begin{longtable}{
     \BLOCK{-if 'table_latex' in ctx and 'column_spec' in ctx.table_latex-}
@@ -30,11 +44,14 @@
 \caption{\VAR{ctx.caption}} \\
 
 \rowcolor{ColorTable}
+\textbf{} & \textbf{} & \textbf{} & \multicolumn{2}{c}{\textbf{HPV Prevalence}} & \multicolumn{1}{c}{}\\
+\arrayrulecolor{ColorTable}\DefLineTableWW 
+\rowcolor{ColorTable}
 \BLOCK{for c in ctx.columns -}
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{{\VAR{c.markers | join(',')}}}$
+            \ts{{\VAR{c.markers | join(',')}}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -44,11 +61,14 @@
 \multicolumn{\VAR{ctx.columns | length}}{c}%
 {{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
 \rowcolor{ColorTable}
+\textbf{} & \textbf{} & \textbf{} & \multicolumn{2}{c}{\textbf{HPV Prevalence}} & \multicolumn{1}{c}{}\\
+\arrayrulecolor{ColorTable}\DefLineTableWW 
+\rowcolor{ColorTable}
 \BLOCK{for c in ctx.columns -}
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{\VAR{c.markers | join(',')}}$
+            \ts{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -65,7 +85,7 @@
  \BLOCK{-for cell in row -}
   \VAR{-cell.value | escape_tex-}
   \BLOCK{-if cell.markers-}
-    $^{\VAR{-cell.markers | join(',')-}}$
+    \ts{\VAR{-cell.markers | join(',')-}}
   \BLOCK{-endif-}
   \BLOCK{-if not loop.last-}
     \VAR{-' & '-}
@@ -78,5 +98,5 @@
 \DefEndTable
 \end{longtable}
 }
-\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+\BLOCK{include '/hpv-infocentre/ic_references_papiloma.tex'}
 \normalsize

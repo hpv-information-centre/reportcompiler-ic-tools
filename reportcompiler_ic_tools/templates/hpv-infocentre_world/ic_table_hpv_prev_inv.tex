@@ -1,4 +1,4 @@
-{\small
+{
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -19,7 +19,7 @@
     \BLOCK{-else-}
         \BLOCK{-for c in ctx.columns-}
 			\BLOCK{-if loop.first-}
-			L{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			C{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
 			\BLOCK{-else-}
 			{\color{white}\vrule width 1pt}
 			C{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
@@ -34,7 +34,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{{\VAR{c.markers | join(',')}}}$
+            \ts{{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -48,7 +48,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{\VAR{c.markers | join(',')}}$
+            \ts{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -60,12 +60,46 @@
 \endfoot
 
 \endlastfoot
-
-\BLOCK{for row in ctx.data.values-}
+\multicolumn{9}{l}{\textbf{ONCOGENIC HPV TYPES}}   \\
+\multicolumn{9}{l}{\textbf{\quad High-risk HPV types}}   \\
+\arrayrulecolor{ColorTable}\DefLineTable 
+\BLOCK{for row in ctx.data_high_risk.values-}
  \BLOCK{-for cell in row -}
   \VAR{-cell.value | escape_tex-}
   \BLOCK{-if cell.markers-}
-    $^{\VAR{-cell.markers | join(',')-}}$
+    \ts{\VAR{-cell.markers | join(',')-}}
+  \BLOCK{-endif-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+\multicolumn{9}{l}{\textbf{\quad Probable/possible carcinogen}}   \\
+\arrayrulecolor{ColorTable}\DefLineTable 
+\BLOCK{for row in ctx.data_posible_risk.values-}
+ \BLOCK{-for cell in row -}
+  \VAR{-cell.value | escape_tex-}
+  \BLOCK{-if cell.markers-}
+    \ts{\VAR{-cell.markers | join(',')-}}
+  \BLOCK{-endif-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+\multicolumn{9}{l}{\textbf{NON-ONCOGENIC HPV TYPES}}   \\
+\arrayrulecolor{ColorTable}\DefLineTable 
+\BLOCK{for row in ctx.data_not_onco.values-}
+ \BLOCK{-for cell in row -}
+  \VAR{-cell.value | escape_tex-}
+  \BLOCK{-if cell.markers-}
+    \ts{\VAR{-cell.markers | join(',')-}}
   \BLOCK{-endif-}
   \BLOCK{-if not loop.last-}
     \VAR{-' & '-}
@@ -79,4 +113,3 @@
 \end{longtable}
 }
 \BLOCK{include '/hpv-infocentre/ic_references.tex'}
-\normalsize

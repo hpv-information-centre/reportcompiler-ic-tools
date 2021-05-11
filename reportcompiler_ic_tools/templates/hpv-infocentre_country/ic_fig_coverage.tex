@@ -1,0 +1,24 @@
+\BLOCK{if ctx.only_one == 1}
+	\begin{figure}[H]
+	  \caption{\VAR{ctx.caption}}
+	  \centering
+		\fbox{\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_1 | escape_path}}}
+		\BLOCK{if ctx.label is defined}
+			\label{fig:\VAR{ctx.label | escape_tex}}
+		\BLOCK{endif}
+	\end{figure}
+	\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+	\normalsize
+\BLOCK{-else}
+	\begin{figure}[H]
+		\caption{\VAR{ctx.caption}}
+		\begin{center}
+			\begin{tabular}{ c c }
+				\includegraphics[height=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_1 | escape_path}} & \includegraphics[height=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_2 | escape_path}} \\
+				\includegraphics[height=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_3 | escape_path}} & \includegraphics[height=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_4 | escape_path}}
+			\end{tabular}
+		\end{center}
+	\end{figure}
+	\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+	\normalsize
+\BLOCK{-endif}

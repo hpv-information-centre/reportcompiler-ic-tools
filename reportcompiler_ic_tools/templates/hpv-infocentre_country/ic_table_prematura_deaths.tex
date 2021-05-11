@@ -1,0 +1,68 @@
+{\scriptsize
+\newcommand*{\DefLineTable}{\hhline{>{\arrayrulecolor{ColorTable}}->{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+}
+}
+
+\newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{L{.22\textwidth-2\tabcolsep}!{\color{white}\vrule width 1pt}
+			C{.14\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			C{.10\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			C{.16\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			C{.10\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			C{.18\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			C{.10\textwidth-2\tabcolsep}!
+}
+\caption{\VAR{ctx.caption}} \\
+
+\rowcolor{ColorTable}
+\multicolumn{1}{c}{} & \multicolumn{2}{c}{\textbf{\VAR{ctx.table_data.country.name}}} & \multicolumn{2}{c}{\textbf{\VAR{ctx.table_data.continent.name}}} & \multicolumn{2}{c}{\textbf{World}}\\
+\rowcolor{ColorTable}
+\textbf{Indicator} & \textbf{Number} & \textbf{ASR (W)} & \textbf{Number} & \textbf{ASR (W)} & \textbf{Number} & \textbf{ASR (W)} \\ \arrayrulecolor{ColorTable}\hline 
+\endfirsthead
+
+\multicolumn{7}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\rowcolor{ColorTable}
+\multicolumn{1}{c}{} & \multicolumn{2}{c}{\textbf{\VAR{ctx.table_data.country.name}}} & \multicolumn{2}{c}{\textbf{\VAR{ctx.table_data.continent.name}}} & \multicolumn{2}{c}{\textbf{World}}\\
+\rowcolor{ColorTable}
+\textbf{Indicator} & \textbf{Number} & \textbf{ASR (W)} & \textbf{Number} & \textbf{ASR (W)} & \textbf{Number} & \textbf{ASR (W)} \\ \arrayrulecolor{ColorTable}\hline 
+\endhead
+
+\arrayrulecolor{ColorTable}\hline 
+\multicolumn{7}{r}{{Continued on next page}} \\
+\endfoot
+
+\endlastfoot
+
+DALYs (95\% UI)\ts{\VAR{ctx.table_data.markers.daly}} & \VAR{ctx.table_data.country.daly_n}  & \VAR{ctx.table_data.country.daly_asr} & \VAR{ctx.table_data.continent.daly_n} & \VAR{ctx.table_data.continent.daly_asr} & \VAR{ctx.table_data.world.daly_n} & \VAR{ctx.table_data.world.daly_asr}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+YLLs (95\% UI)\ts{\VAR{ctx.table_data.markers.ylls}} & \VAR{ctx.table_data.country.ylls_n}  & \VAR{ctx.table_data.country.ylls_asr} & \VAR{ctx.table_data.continent.ylls_n} & \VAR{ctx.table_data.continent.ylls_asr} & \VAR{ctx.table_data.world.ylls_n} & \VAR{ctx.table_data.world.ylls_asr}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+YLDs (95\% UI)\ts{\VAR{ctx.table_data.markers.ylds}} & \VAR{ctx.table_data.country.ylds_n}  & \VAR{ctx.table_data.country.ylds_asr} & \VAR{ctx.table_data.continent.ylds_n} & \VAR{ctx.table_data.continent.ylds_asr} & \VAR{ctx.table_data.world.ylds_n} & \VAR{ctx.table_data.world.ylds_asr}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\DefEndTable
+\end{longtable}
+}
+
+\BLOCK{include '/hpv-infocentre/ic_references.tex'}

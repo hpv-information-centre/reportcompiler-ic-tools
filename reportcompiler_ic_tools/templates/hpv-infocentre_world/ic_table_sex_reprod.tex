@@ -1,4 +1,4 @@
-{\small
+{\scriptsize
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -29,6 +29,8 @@
 }
 \caption{\VAR{ctx.caption}} \\
 
+\rowcolor{ColorTable}
+\multicolumn{3}{c}{} & \multicolumn{2}{c}{\textbf{MALE}} & \multicolumn{2}{c}{\textbf{FEMALE}} & \multicolumn{2}{c}{\textbf{TOTAL}}\\
 \rowcolor{ColorTable}
 \BLOCK{for c in ctx.columns -}
     \textbf{

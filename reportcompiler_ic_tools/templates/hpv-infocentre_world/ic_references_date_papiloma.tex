@@ -1,0 +1,22 @@
+\BLOCK{if ctx.footer.date.min_close is defined and ctx.footer.date.min_close and ctx.footer.date.max_close is defined and ctx.footer.date.max_close}
+	\BLOCK{if ctx.footer.date.date_publication is defined and ctx.footer.date.date_publication}
+	\textbf{\scriptsize{Data updated on {\yyyymmdddate\renewcommand{\dateseparator}{-}\today} (data as of \VAR{ctx.footer.date.max_close | format_date('%e %b %Y')} / \VAR{ctx.footer.date.min_close | format_date('%e %b %Y')})}}
+	\\
+	\BLOCK{-else}
+	% Internal data source
+	\textbf{\scriptsize{Data updated on {\yyyymmdddate\renewcommand{\dateseparator}{-}\today} (data as of \VAR{ctx.footer.date.max_close | format_date('%e %b %Y')} / \VAR{ctx.footer.date.min_close | format_date('%e %b %Y')})}}
+	\\
+	\BLOCK{-endif}
+\BLOCK{-else}
+	\BLOCK{if ctx.footer.date.date_publication is defined and ctx.footer.date.date_publication}
+	\textbf{\scriptsize{Data updated on {\yyyymmdddate\renewcommand{\dateseparator}{-}\today} (data as of \VAR{ctx.footer.date.date_closing | format_date('%e %b %Y')})}}
+	\\
+	\BLOCK{-else}
+	% Internal data source
+	\textbf{\scriptsize{Data updated on {\yyyymmdddate\renewcommand{\dateseparator}{-}\today} (data as of \VAR{ctx.footer.date.date_closing | format_date('%e %b %Y')})}}
+	\\
+	\BLOCK{-endif}
+\BLOCK{-endif}
+
+
+

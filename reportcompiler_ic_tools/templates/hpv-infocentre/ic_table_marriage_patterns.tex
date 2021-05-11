@@ -1,0 +1,88 @@
+{\scriptsize
+\newcommand*{\DefLineTable}{\hhline{>{\arrayrulecolor{ColorTable}}->{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+}
+}
+
+\newcommand*{\DefLineTableTwo}{\hhline{%
+    >{\arrayrulecolor{white}}-% 
+    >{\arrayrulecolor{ColorTable}}-%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}-%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}-}%
+    }
+
+
+\newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{L{.30\textwidth-2\tabcolsep}!{\color{white}\vrule width 1pt}
+			L{.40\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			C{.15\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			C{.15\textwidth-2\tabcolsep}!
+}
+\caption{\VAR{ctx.caption}} \\
+
+\rowcolor{ColorTable}
+\textbf{Indicator} & & \textbf{Male} & \textbf{Female} \\ \arrayrulecolor{ColorTable}\hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\rowcolor{ColorTable}
+\textbf{Indicator} & \textbf{Male} & \textbf{Female} \\ \arrayrulecolor{ColorTable}\hline 
+\endhead
+
+\arrayrulecolor{ColorTable}\hline 
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+
+\endlastfoot
+
+Average age at first marriage$^{\VAR{ctx.table_data.notas.average}}$ & & \VAR{ctx.table_data.men.first} & \VAR{ctx.table_data.women.first}    \\
+\arrayrulecolor{ColorTable}\DefLineTable
+Age-specific \% of ever married$^{\VAR{ctx.table_data.notas.percentage}}$ & 15-19 years & \VAR{ctx.table_data.men.period1519} & \VAR{ctx.table_data.women.period1519}      \\
+\arrayrulecolor{ColorTable}\DefLineTable
+ & 20-24 years & \VAR{ctx.table_data.men.period2024} & \VAR{ctx.table_data.women.period2024}      \\
+ \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 25-29 years & \VAR{ctx.table_data.men.period2529} & \VAR{ctx.table_data.women.period2529}      \\
+ \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 30-34 years & \VAR{ctx.table_data.men.period3034} & \VAR{ctx.table_data.women.period3034}      \\
+ \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 35-39 years & \VAR{ctx.table_data.men.period3539} & \VAR{ctx.table_data.women.period3539}      \\
+ \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 40-44 years & \VAR{ctx.table_data.men.period4044} & \VAR{ctx.table_data.women.period4044}      \\
+ \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 45-49 years & \VAR{ctx.table_data.men.period4549} & \VAR{ctx.table_data.women.period4549}      \\
+  \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 50-54 years & \VAR{ctx.table_data.men.period5054} & \VAR{ctx.table_data.women.period5054}      \\
+ \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 55-59 years & \VAR{ctx.table_data.men.period5559} & \VAR{ctx.table_data.women.period5559}      \\
+  \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 60-64 years & \VAR{ctx.table_data.men.period6064} & \VAR{ctx.table_data.women.period6064}      \\
+ \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 65-69 years & \VAR{ctx.table_data.men.period6569} & \VAR{ctx.table_data.women.period6569}      \\
+  \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & 70-74 years & \VAR{ctx.table_data.men.period7074} & \VAR{ctx.table_data.women.period7074}      \\
+ \arrayrulecolor{ColorTable}\DefLineTableTwo 
+ & +75 & \VAR{ctx.table_data.men.period75} & \VAR{ctx.table_data.women.period75}      \\
+
+
+
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\DefEndTable
+\end{longtable}
+}
+
+\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+
+
+
+

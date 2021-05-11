@@ -1,10 +1,10 @@
 \vspace{-4mm}
 {\tiny
-\BLOCK{include '/hpv-infocentre/ic_references_date.tex'}
+\BLOCK{include '/hpv-infocentre/ic_references_date_papiloma.tex'}
 \BLOCK{if ctx.footer.methods}
     \BLOCK{for f in ctx.footer.methods}
         \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
+\ts{\VAR{f.marker | escape_tex}}
         \BLOCK{-else-}
 
         \BLOCK{-endif}
@@ -14,7 +14,7 @@ $^{\VAR{f.marker | escape_tex}}$
 \BLOCK{if ctx.footer.notes}
     \BLOCK{for f in ctx.footer.notes}
         \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
+\ts{\VAR{f.marker | escape_tex}}
         \BLOCK{-else-}
 
         \BLOCK{-endif}
@@ -25,7 +25,7 @@ $^{\VAR{f.marker | escape_tex}}$
     Year of estimate: 
     \BLOCK{for f in ctx.footer.years}
         \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
+\ts{\VAR{f.marker | escape_tex}}
         \BLOCK{-else-}
 
         \BLOCK{-endif}
@@ -33,15 +33,7 @@ $^{\VAR{f.marker | escape_tex}}$
     \BLOCK{endfor}
 \BLOCK{endif}
 \BLOCK{if ctx.footer.sources}
-    \underline{Data Sources}: \\
-    \BLOCK{for f in ctx.footer.sources}
-        \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
-        \BLOCK{-else-}
-
-        \BLOCK{-endif}
- \VAR{f.text | escape_tex} \\
-    \BLOCK{endfor}
+    \underline{Data Sources}: See references in Section 9 ~\nameref{sec:References}.
 \BLOCK{endif}
 \par
 }

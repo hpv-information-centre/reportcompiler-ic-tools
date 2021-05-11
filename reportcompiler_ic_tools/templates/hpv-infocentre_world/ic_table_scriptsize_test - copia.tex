@@ -1,4 +1,4 @@
-{\small
+{\scriptsize
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -34,7 +34,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{{\VAR{c.markers | join(',')}}}$
+            \ts{{\VAR{c.markers | join(',')}}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -48,7 +48,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{\VAR{c.markers | join(',')}}$
+            \ts{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -65,7 +65,7 @@
  \BLOCK{-for cell in row -}
   \VAR{-cell.value | escape_tex-}
   \BLOCK{-if cell.markers-}
-    $^{\VAR{-cell.markers | join(',')-}}$
+    \ts{\VAR{-cell.markers | join(',')-}}
   \BLOCK{-endif-}
   \BLOCK{-if not loop.last-}
     \VAR{-' & '-}

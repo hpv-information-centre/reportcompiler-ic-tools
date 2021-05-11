@@ -1,4 +1,4 @@
-{\small
+{\scriptsize
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -62,18 +62,44 @@
 \endlastfoot
 
 \BLOCK{for row in ctx.data.values-}
- \BLOCK{-for cell in row -}
-  \VAR{-cell.value | escape_tex-}
-  \BLOCK{-if cell.markers-}
-    $^{\VAR{-cell.markers | join(',')-}}$
-  \BLOCK{-endif-}
-  \BLOCK{-if not loop.last-}
-    \VAR{-' & '-}
-  \BLOCK{-else}
-    \\
-    \arrayrulecolor{ColorTable}\DefLineTable 
-  \BLOCK{endif-}
- \BLOCK{-endfor-}
+	\BLOCK{-for cell in row -}
+	
+		\BLOCK{if cell.bold is defined}
+			\BLOCK{if cell.bold == 1}
+				\textbf{\VAR{-cell.value | escape_tex-}}
+			\BLOCK{elif cell.bold == 0}
+				\hspace{5mm}\VAR{-cell.value | escape_tex-}
+			\BLOCK{endif}
+		\BLOCK{else}
+			\BLOCK{if cell.color is defined}
+				\BLOCK{if cell.color == 1}
+					\cellcolor{asr1!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{elif cell.color == 2}
+					\cellcolor{asr2!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{elif cell.color == 3}
+					\cellcolor{asr3!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{elif cell.color == 4}
+					\cellcolor{asr4!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{elif cell.color == 5}
+					\cellcolor{asr5!75}\VAR{-cell.value | escape_tex-}
+				\BLOCK{else}
+					\VAR{-cell.value | escape_tex-}
+				\BLOCK{endif}
+			\BLOCK{else}
+				\VAR{-cell.value | escape_tex-}
+			\BLOCK{endif}
+		\BLOCK{endif}
+		
+		\BLOCK{-if cell.markers-}
+			$^{\VAR{-cell.markers | join(',')-}}$
+		\BLOCK{-endif-}
+		\BLOCK{-if not loop.last-}
+			\VAR{-' & '-}
+		\BLOCK{-else}
+		\\
+		\arrayrulecolor{ColorTable}\DefLineTable 
+		\BLOCK{endif-}
+	\BLOCK{-endfor-}
 \BLOCK{endfor-}
 \DefEndTable
 \end{longtable}

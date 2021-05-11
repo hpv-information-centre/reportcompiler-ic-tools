@@ -1,6 +1,6 @@
 \vspace{-4mm}
 {\tiny
-\BLOCK{include '/hpv-infocentre/ic_references_date.tex'}
+\BLOCK{include '/hpv-infocentre/ic_references_date_papiloma.tex'}
 \BLOCK{if ctx.footer.methods}
     \BLOCK{for f in ctx.footer.methods}
         \BLOCK{if f.marker != ''}
@@ -43,5 +43,4 @@ $^{\VAR{f.marker | escape_tex}}$
  \VAR{f.text | escape_tex} \\
     \BLOCK{endfor}
 \BLOCK{endif}
-\par
 }

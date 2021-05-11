@@ -1,4 +1,4 @@
-{\small
+{\scriptsize
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -63,6 +63,12 @@
 
 \BLOCK{for row in ctx.data.values-}
  \BLOCK{-for cell in row -}
+	  \BLOCK{if cell.continent is defined}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{\VAR{cell.continent}}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
   \VAR{-cell.value | escape_tex-}
   \BLOCK{-if cell.markers-}
     $^{\VAR{-cell.markers | join(',')-}}$

@@ -4,7 +4,7 @@
 \BLOCK{if ctx.footer.methods}
     \BLOCK{for f in ctx.footer.methods}
         \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
+\ts{\VAR{f.marker | escape_tex}}
         \BLOCK{-else-}
 
         \BLOCK{-endif}
@@ -14,7 +14,7 @@ $^{\VAR{f.marker | escape_tex}}$
 \BLOCK{if ctx.footer.notes}
     \BLOCK{for f in ctx.footer.notes}
         \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
+\ts{\VAR{f.marker | escape_tex}}
         \BLOCK{-else-}
 
         \BLOCK{-endif}
@@ -25,7 +25,7 @@ $^{\VAR{f.marker | escape_tex}}$
     Year of estimate: 
     \BLOCK{for f in ctx.footer.years}
         \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
+\ts{\VAR{f.marker | escape_tex}}
         \BLOCK{-else-}
 
         \BLOCK{-endif}
@@ -36,7 +36,7 @@ $^{\VAR{f.marker | escape_tex}}$
     \underline{Data Sources}: \\
     \BLOCK{for f in ctx.footer.sources}
         \BLOCK{if f.marker != ''}
-$^{\VAR{f.marker | escape_tex}}$
+\ts{\VAR{f.marker | escape_tex}}
         \BLOCK{-else-}
 
         \BLOCK{-endif}

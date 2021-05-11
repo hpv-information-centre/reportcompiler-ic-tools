@@ -1,0 +1,100 @@
+Paises
+
+\vspace{-4mm}
+{\tiny
+\BLOCK{include '/hpv-infocentre/ic_references_date.tex'}
+\BLOCK{if ctx.footer.methods}
+    \BLOCK{for f in ctx.footer.methods}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+\BLOCK{endif}
+\BLOCK{if ctx.footer.notes}
+    \BLOCK{for f in ctx.footer.notes}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+\BLOCK{endif}
+\BLOCK{if ctx.footer.years}
+    Year of estimate: 
+    \BLOCK{for f in ctx.footer.years}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+\BLOCK{endif}
+\BLOCK{if ctx.footer.sources}
+    \underline{Data Sources}: \\
+    \BLOCK{for f in ctx.footer.sources}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+\BLOCK{endif}
+\par
+}
+
+Mundo
+
+\vspace{-4mm}
+{\tiny
+\BLOCK{include '/hpv-infocentre/ic_references_date.tex'}
+\BLOCK{if ctx.footer.methods}
+    \BLOCK{for f in ctx.footer.methods}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+\BLOCK{endif}
+\BLOCK{if ctx.footer.notes}
+    \BLOCK{for f in ctx.footer.notes}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+\BLOCK{endif}
+\BLOCK{if ctx.footer.years}
+    Year of estimate: 
+    \BLOCK{for f in ctx.footer.years}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+\BLOCK{endif}
+\BLOCK{if ctx.footer.sources}
+    \underline{Data Sources}: \\
+    \BLOCK{for f in ctx.footer.sources}
+        \BLOCK{if f.marker != ''}
+$^{\VAR{f.marker | escape_tex}}$
+        \BLOCK{-else-}
+
+        \BLOCK{-endif}
+ \VAR{f.text | escape_tex} \\
+    \BLOCK{endfor}
+\BLOCK{endif}
+\par
+}
+

@@ -1,0 +1,34 @@
+\BLOCK{if ctx.num_regions == 5}
+
+\begin{figure}[h]
+  \caption{\VAR{ctx.caption}}
+  \centering
+		\fbox{
+			\begin{tabular}{ll}
+				\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path1 | escape_path}} & \includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path2 | escape_path}} \\
+				\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path3 | escape_path}} & \includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path4 | escape_path}} \\
+				\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path5 | escape_path}} & \\
+			\end{tabular}
+        }
+\end{figure}
+
+\BLOCK{include '/hpv-infocentre/ic_references_papiloma.tex'}
+
+\BLOCK{else}
+
+\begin{figure}[h]
+  \caption{\VAR{ctx.caption}}
+  \centering
+		\fbox{
+			\begin{tabular}{ll}
+				\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path1 | escape_path}} & \includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path2 | escape_path}} \\
+				\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path3 | escape_path}} & \includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path4 | escape_path}} \\
+				\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path5 | escape_path}} & \includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path6 | escape_path}} \\
+			\end{tabular}
+        }
+\end{figure}
+
+\BLOCK{include '/hpv-infocentre/ic_references_papiloma.tex'}
+
+\BLOCK{endif}
+

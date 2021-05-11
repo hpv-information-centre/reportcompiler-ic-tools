@@ -1,4 +1,4 @@
-{\small
+{\tiny
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -30,11 +30,13 @@
 \caption{\VAR{ctx.caption}} \\
 
 \rowcolor{ColorTable}
+\multicolumn{4}{c}{} & \multicolumn{2}{c}{\textbf{HPV Prevalence}} & \multicolumn{1}{c}{}\\
+\rowcolor{ColorTable}
 \BLOCK{for c in ctx.columns -}
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{{\VAR{c.markers | join(',')}}}$
+            \ts{{\VAR{c.markers | join(',')}}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -48,7 +50,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{\VAR{c.markers | join(',')}}$
+            \ts{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -60,12 +62,47 @@
 \endfoot
 
 \endlastfoot
-
-\BLOCK{for row in ctx.data.values-}
+\rowcolor{ColorTable2}
+\multicolumn{\VAR{ctx.n_columns}}{l}{\textbf{MEN}}   \\
+\BLOCK{for row in ctx.data_men.values-}
  \BLOCK{-for cell in row -}
   \VAR{-cell.value | escape_tex-}
   \BLOCK{-if cell.markers-}
-    $^{\VAR{-cell.markers | join(',')-}}$
+    \ts{\VAR{-cell.markers | join(',')-}}
+  \BLOCK{-endif-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable2}
+\multicolumn{\VAR{ctx.n_columns}}{l}{\textbf{WOMEN}}   \\
+\BLOCK{for row in ctx.data_women.values-}
+ \BLOCK{-for cell in row -}
+  \VAR{-cell.value | escape_tex-}
+  \BLOCK{-if cell.markers-}
+    \ts{\VAR{-cell.markers | join(',')-}}
+  \BLOCK{-endif-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable2}
+\multicolumn{\VAR{ctx.n_columns}}{l}{\textbf{BOTH OR UNSPECIFIED}}   \\
+\BLOCK{for row in ctx.data_both.values-}
+ \BLOCK{-for cell in row -}
+  \VAR{-cell.value | escape_tex-}
+  \BLOCK{-if cell.markers-}
+    \ts{\VAR{-cell.markers | join(',')-}}
   \BLOCK{-endif-}
   \BLOCK{-if not loop.last-}
     \VAR{-' & '-}
@@ -78,5 +115,5 @@
 \DefEndTable
 \end{longtable}
 }
-\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+\BLOCK{include '/hpv-infocentre/ic_references_papiloma.tex'}
 \normalsize

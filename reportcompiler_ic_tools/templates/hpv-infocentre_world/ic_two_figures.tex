@@ -1,0 +1,11 @@
+\begin{figure}[h]
+	\BLOCK{if ctx.continued is defined}
+		\addtocounter{figure}{-1}
+	\BLOCK{-endif}
+  \caption{\VAR{ctx.caption}}
+  \centering
+    \fbox{\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_1 | escape_path}}
+	\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_2 | escape_path}}}
+\end{figure}
+
+\BLOCK{include '/hpv-infocentre/ic_references_no_markers.tex'}

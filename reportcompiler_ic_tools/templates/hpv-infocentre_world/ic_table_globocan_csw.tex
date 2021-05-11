@@ -1,0 +1,71 @@
+{\normalsize
+\newcommand*{\DefLineTable}{\hhline{>{\arrayrulecolor{ColorTable}}->{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+}
+}
+
+\newcolumntype{P}[1]{>{\arraybackslash}m{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{P{.37\textwidth-2\tabcolsep}!{\color{white}\vrule width 1pt}
+			M{.22\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			M{.22\textwidth-2\tabcolsep}!
+{\color{white}\vrule width 1pt}
+			M{.19\textwidth-2\tabcolsep}!
+}
+\caption{\VAR{ctx.caption}} \\
+
+\rowcolor{ColorTable}
+\textbf{Indicator} & \textbf{\VAR{ctx.country_name}} & \textbf{\VAR{ctx.subregion_name}} & \textbf{World} \\ \arrayrulecolor{ColorTable}\hline 
+\endfirsthead
+
+\multicolumn{4}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\rowcolor{ColorTable}
+\textbf{Indicator} & \textbf{\VAR{ctx.country_name}} & \textbf{\VAR{ctx.subregion_name}} & \textbf{World} \\ \arrayrulecolor{ColorTable}\hline 
+\endhead
+
+\arrayrulecolor{ColorTable}\hline 
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+
+\endlastfoot
+
+\textbf{MEN} & & &    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.cases} & \VAR{ctx.table_data.men.country.cases} & \VAR{ctx.table_data.men.subregion.cases} & \VAR{ctx.table_data.men.world.cases}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.ui} & \VAR{ctx.table_data.men.country.ui} & \VAR{ctx.table_data.men.subregion.ui} & \VAR{ctx.table_data.men.world.ui}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.rate}\ts{b} & \VAR{ctx.table_data.men.country.rate} & \VAR{ctx.table_data.men.subregion.rate} & \VAR{ctx.table_data.men.world.rate}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.asr}\ts{b} & \VAR{ctx.table_data.men.country.asr} & \VAR{ctx.table_data.men.subregion.asr} & \VAR{ctx.table_data.men.world.asr}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.cum_risk}\ts{a} & \VAR{ctx.table_data.men.country.cum_risk} & \VAR{ctx.table_data.men.subregion.cum_risk} & \VAR{ctx.table_data.men.world.cum_risk}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable
+\textbf{WOMEN} & & &    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.cases} & \VAR{ctx.table_data.women.country.cases} & \VAR{ctx.table_data.women.subregion.cases} & \VAR{ctx.table_data.women.world.cases}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.ui} & \VAR{ctx.table_data.women.country.ui} & \VAR{ctx.table_data.women.subregion.ui} & \VAR{ctx.table_data.women.world.ui}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.rate}\ts{c} & \VAR{ctx.table_data.women.country.rate} & \VAR{ctx.table_data.women.subregion.rate} & \VAR{ctx.table_data.women.world.rate}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.asr}\ts{c} & \VAR{ctx.table_data.women.country.asr} & \VAR{ctx.table_data.women.subregion.asr} & \VAR{ctx.table_data.women.world.asr}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\VAR{ctx.table_data.titles.cum_risk}\ts{a} & \VAR{ctx.table_data.women.country.cum_risk} & \VAR{ctx.table_data.women.subregion.cum_risk} & \VAR{ctx.table_data.women.world.cum_risk}    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\DefEndTable
+\end{longtable}
+}
+
+\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+
+
+
+

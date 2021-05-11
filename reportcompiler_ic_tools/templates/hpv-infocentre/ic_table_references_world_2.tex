@@ -1,0 +1,1022 @@
+{\scriptsize
+\newcommand*{\DefLineTable}{\hhline{
+\BLOCK{-for c in ctx.columns-}
+	\BLOCK{-if loop.first-}
+		>{\arrayrulecolor{ColorTable}}-
+	\BLOCK{-else-}
+		>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+	\BLOCK{endif-}
+\BLOCK{-endfor-}}
+}
+
+\newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{
+    \BLOCK{-if 'table_latex' in ctx and 'column_spec' in ctx.table_latex-}
+        \VAR{-ctx.table_latex.column_spec-}
+    \BLOCK{-else-}
+        \BLOCK{-for c in ctx.columns-}
+			\BLOCK{-if loop.first-}
+			\VAR{-c.align | escape_tex-}{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			\BLOCK{-else-}
+			{\color{white}\vrule width 1pt}
+			\VAR{-c.align | escape_tex-}{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			\BLOCK{endif-}
+        \BLOCK{-endfor-}
+    \BLOCK{endif-}
+}
+\caption{\VAR{ctx.caption}} \\
+
+\rowcolor{ColorTable}
+\BLOCK{for c in ctx.columns -}
+    \textbf{
+        \VAR{-c.value | escape_tex-}
+        \BLOCK{-if c.markers-}
+            \ts{{\VAR{c.markers | join(',')}}
+        \BLOCK{-endif-}
+    } 
+        \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
+\BLOCK{- endfor} 
+\endfirsthead
+
+\multicolumn{\VAR{ctx.columns | length}}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\rowcolor{ColorTable}
+\BLOCK{for c in ctx.columns -}
+    \textbf{
+        \VAR{-c.value | escape_tex-}
+        \BLOCK{-if c.markers-}
+            \ts{\VAR{c.markers | join(',')}}
+        \BLOCK{-endif-}
+    } 
+        \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
+\BLOCK{- endfor} 
+\endhead
+
+\arrayrulecolor{ColorTable}\hline 
+\multicolumn{\VAR{ctx.columns | length}}{r}{{Continued on next page}} \\
+\endfoot
+
+\endlastfoot
+
+\arrayrulecolor{white}\hline 
+\arrayrulecolor{white}\hline 
+\arrayrulecolor{white}\hline 
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV prevalence and HPV type distribution for cytologically normal women}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews and meta-analysis performed by ICO. The ICO HPV Information Centre has updated data until June 2014. Reference publications: 1) Bruni L, J Infect Dis 2010; 202: 1789. 2) De Sanjosé S, Lancet Infect Dis 2007; 7: 453 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_1_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_1_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_1_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_1_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_1_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_1_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for invasive cervical cancer (ICC)}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources &  Based on meta-analysis performed by IARC’s Infections and Cancer Epidemiology Group up to November 2011, the ICO HPV Information Centre has updated data until June 2014. Reference publications: 1) Guan P, Int J Cancer 2012;131:2349 2) Li N, Int J Cancer 2011;128:927 3) Smith JS, Int J Cancer 2007;121:621 4) Clifford GM, Br J Cancer 2003;88:63 5) Clifford GM, Br J Cancer 2003;89:101. \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_2_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_2_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_2_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_2_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_2_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_2_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for cervical high grade squamous intraepithelial lesions}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources &  Based on meta-analysis performed by IARC’s Infections and Cancer Epidemiology Group up to November 2011, the ICO HPV Information Centre has updated data until June 2014. Reference publications: 1) Guan P, Int J Cancer 2012;131:2349 2) Li N, Int J Cancer 2011;128:927 3) Smith JS, Int J Cancer 2007;121:621 4) Clifford GM, Br J Cancer 2003;88:63 5) Clifford GM, Br J Cancer 2003;89:101. \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+\BLOCK{for row in ctx.section_3_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_3_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_3_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_3_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_3_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_3_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for cervical low grade squamous intraepithelial lesions}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources &  Based on meta-analysis performed by IARC’s Infections and Cancer Epidemiology Group up to November 2011, the ICO HPV Information Centre has updated data until June 2015. Reference publications: 1) Guan P, Int J Cancer 2012;131:2349 2) Clifford GM, Cancer Epidemiol Biomarkers Prev 2005;14:1157 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+\BLOCK{for row in ctx.section_4_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_4_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_4_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_4_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_4_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_4_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for invasive anal cancer}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews (up to 2008) performed by ICO for the IARC Monograph on the Evaluation of Carcinogenic Risks to Humans volume 100B and IARC’s Infections and Cancer Epidemiology Group. The ICO HPV Information Centre has updated data until June 2015. Reference publications: 1) Bouvard V, Lancet Oncol 2009;10:321 2) De Vuyst H, Int J Cancer 2009;124:1626 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_5_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_5_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_5_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_5_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_5_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_5_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for anal intraepithelial neoplasia (AIN)}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews (up to 2008) performed by ICO for the IARC Monograph on the Evaluation of Carcinogenic Risks to Humans volume 100B and IARC’s Infections and Cancer Epidemiology Group. The ICO HPV Information Centre has updated data until June 2015. Reference publications: 1) Bouvard V, Lancet Oncol 2009;10:321 2) De Vuyst H, Int J Cancer 2009;124:1626 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+\BLOCK{for row in ctx.section_6_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_6_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_6_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_6_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_6_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_6_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for invasive vulvar cancer}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews (up to 2008) performed by ICO for the IARC Monograph on the Evaluation of Carcinogenic Risks to Humans volume 100B and IARC’s Infections and Cancer Epidemiology Group. The ICO HPV Information Centre has updated data until June 2015. Reference publications: 1) Bouvard V, Lancet Oncol 2009;10:321 2) De Vuyst H, Int J Cancer 2009;124:1626 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_7_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_7_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_7_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_7_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_7_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_7_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for vulvar intraepithelial neoplasia (VIN)}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews (up to 2008) performed by ICO for the IARC Monograph on the Evaluation of Carcinogenic Risks to Humans volume 100B and IARC’s Infections and Cancer Epidemiology Group. The ICO HPV Information Centre has updated data until June 2015. Reference publications: 1) Bouvard V, Lancet Oncol 2009;10:321 2) De Vuyst H, Int J Cancer 2009;124:1626 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_8_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_8_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_8_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_8_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_8_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_8_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for invasive vaginal cancer}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews (up to 2008) performed by ICO for the IARC Monograph on the Evaluation of Carcinogenic Risks to Humans volume 100B and IARC’s Infections and Cancer Epidemiology Group. The ICO HPV Information Centre has updated data until June 2015. Reference publications: 1) Bouvard V, Lancet Oncol 2009;10:321 2) De Vuyst H, Int J Cancer 2009;124:1626 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_9_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_9_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_9_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_9_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_9_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_9_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for vaginal intraepithelial neoplasia (VAIN)}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews (up to 2008) performed by ICO for the IARC Monograph on the Evaluation of Carcinogenic Risks to Humans volume 100B and IARC’s Infections and Cancer Epidemiology Group. The ICO HPV Information Centre has updated data until June 2015. Reference publications: 1) Bouvard V, Lancet Oncol 2009;10:321 2) De Vuyst H, Int J Cancer 2009;124:1626 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_10_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_10_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_10_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_10_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_10_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_10_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for invasive penile cancer}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & The ICO HPV Information Centre has updated data until June 2015. Reference publications (up to 2008): 1) Bouvard V, Lancet Oncol 2009;10:321 2) Miralles-Guri C,J Clin Pathol 2009;62:870 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+\BLOCK{for row in ctx.section_11_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_11_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_11_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_11_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_11_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_11_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV type distribution for penile intraepithelial neoplasia (PEIN)}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources &  The ICO HPV Information Centre has updated data until June 2014. Reference publication (up to 2008): Bouvard V, Lancet Oncol 2009;10:321 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_12_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_12_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_12_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_12_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_12_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_12_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{The anogenital prevalence of HPV-DNA in men: HPV in men}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources &  Based on published systematic reviews, the ICO HPV Information Centre has updated data until October 2015. Reference publications: 1) Dunne EF, J Infect Dis 2006; 194: 1044 2) Smith JS, J Adolesc Health 2011; 48: 540 3) Olesen TB, Sex Transm Infect 2014; 90: 455 4) Hebnes JB, J Sex Med 2014; 11: 2630. \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_13_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_13_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_13_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_13_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_13_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_13_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{The anogenital prevalence of HPV-DNA in men: HPV in special subgroups (HIV, MSM, etc)}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on published systematic reviews, the ICO HPV Information Centre has updated data until October 2015. Reference publications: 1) Dunne EF, J Infect Dis 2006; 194: 1044 2) Smith JS, J Adolesc Health 2011; 48: 540 3) Olesen TB, Sex Transm Infect 2014; 90: 455 4) Hebnes JB, J Sex Med 2014; 11: 2630. \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+\BLOCK{for row in ctx.section_14_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_14_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_14_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_14_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_14_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_14_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV prevalence and type distribution in oral specimens collected from healthy population}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Systematic review and meta-analysis was performed by ICO HPV Information Centre until July 2012. Pubmed was searched using the keywords oral and papillomavirus. Inclusion criteria: studies reporting oral HPV prevalence in healthy population in Europe; n > 50. Exclusion criteria: focused only in children or immunosuppressed population; not written in English; case-control studies; commentaries and systematic reviews and studies that did not use HPV DNA detection methods. \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_15_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_15_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_15_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_15_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_15_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_15_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV prevalence and type distribution in invasive oral cavity squamous cell carcinoma}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews and meta-analysis performed by ICO. Reference publications: 1) Ndiaye C, Lancet Oncol 2014; 15: 1319 2) Kreimer AR, Cancer Epidemiol Biomarkers Prev 2005; 14: 467 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+
+\BLOCK{for row in ctx.section_16_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_16_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_16_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_16_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_16_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_16_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV prevalence and type distribution in invasive oropharyngeal squamous cell carcinoma}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources &  Based on systematic reviews and meta-analysis performed by ICO. Reference publications: 1) Ndiaye C, Lancet Oncol 2014; 15: 1319 2) Kreimer AR, Cancer Epidemiol Biomarkers Prev 2005; 14: 467 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+\BLOCK{for row in ctx.section_17_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_17_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_17_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_17_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_17_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_17_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+\rowcolor{ColorTable}
+\multicolumn{2}{l}{\textbf{HPV prevalence and type distribution in invasive hypopharyngeal squamous cell carcinoma}} \\ \arrayrulecolor{ColorTable}\hline 
+General sources & Based on systematic reviews and meta-analysis performed by ICO. Reference publications: 1) Ndiaye C, Lancet Oncol 2014; 15: 1319 2) Kreimer AR, Cancer Epidemiol Biomarkers Prev 2005; 14: 467 \\
+\arrayrulecolor{ColorTable}\hline 
+\arrayrulecolor{ColorTable}\hline 
+
+\BLOCK{for row in ctx.section_18_table.values-}
+ \BLOCK{-for cell in row -}
+ \BLOCK{if cell == ctx.section_18_africa}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Africa}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_18_europe}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Europe}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_18_americas}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Americas}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_18_oceania}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Oceania}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+		
+		\BLOCK{if cell == ctx.section_18_asia}
+			\rowcolor{ColorTable2}
+				\multicolumn{\VAR{ctx.columns | length}}{l}{\textbf{Asia}}   \\
+        \BLOCK{-else-}
+			
+        \BLOCK{-endif}
+  \VAR{-cell | escape_tex-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+
+
+\DefEndTable
+\end{longtable}
+}
+\normalsize

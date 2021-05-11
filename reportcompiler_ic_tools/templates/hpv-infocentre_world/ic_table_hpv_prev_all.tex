@@ -1,0 +1,135 @@
+{\scriptsize
+\newcommand*{\DefLineTable}{\hhline{
+\BLOCK{-for c in ctx.columns-}
+	\BLOCK{-if loop.first-}
+		>{\arrayrulecolor{ColorTable}}-
+	\BLOCK{-else-}
+		>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+	\BLOCK{endif-}
+\BLOCK{-endfor-}}
+}
+
+\newcommand*{\DefLineTableWhite}{\hhline{
+\BLOCK{-for c in ctx.columns-}
+	\BLOCK{-if loop.first-}
+		>{\arrayrulecolor{ColorWhite}}-
+	\BLOCK{-else-}
+		>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorWhite}}-%
+	\BLOCK{endif-}
+\BLOCK{-endfor-}}
+}
+
+\newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{
+    \BLOCK{-if 'table_latex' in ctx and 'column_spec' in ctx.table_latex-}
+        \VAR{-ctx.table_latex.column_spec-}
+    \BLOCK{-else-}
+        \BLOCK{-for c in ctx.columns-}
+			\BLOCK{-if loop.first-}
+			C{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			\BLOCK{-else-}
+			{\color{white}\vrule width 1pt}
+			C{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			\BLOCK{endif-}
+        \BLOCK{-endfor-}
+    \BLOCK{endif-}
+}
+\caption{\VAR{ctx.caption}} \\
+
+\rowcolor{ColorTable}
+\multicolumn{1}{c}{} & \multicolumn{2}{c}{\textbf{Normal cytology}} & \multicolumn{2}{c}{\textbf{Low-grade lesions}} & \multicolumn{2}{c}{\textbf{High-grade lesions}} & \multicolumn{2}{c}{\textbf{Cervical cancer}}\\
+\rowcolor{ColorTable}
+\BLOCK{for c in ctx.columns -}
+    \textbf{
+        \VAR{-c.value | escape_tex-}
+        \BLOCK{-if c.markers-}
+            \ts{{\VAR{c.markers | join(',')}}
+        \BLOCK{-endif-}
+    } 
+        \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
+\BLOCK{- endfor} 
+\endfirsthead
+
+\multicolumn{\VAR{ctx.columns | length}}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\rowcolor{ColorTable}
+\multicolumn{1}{c}{} & \multicolumn{2}{c}{\textbf{Normal cytology}} & \multicolumn{2}{c}{\textbf{Low-grade lesions}} & \multicolumn{2}{c}{\textbf{High-grade lesions}} & \multicolumn{2}{c}{\textbf{Cervical cancer}}\\
+\rowcolor{ColorTable}
+\BLOCK{for c in ctx.columns -}
+    \textbf{
+        \VAR{-c.value | escape_tex-}
+        \BLOCK{-if c.markers-}
+            \ts{\VAR{c.markers | join(',')}}
+        \BLOCK{-endif-}
+    } 
+        \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
+\BLOCK{- endfor} 
+\endhead
+
+\arrayrulecolor{ColorTable}\hline 
+\multicolumn{\VAR{ctx.columns | length}}{r}{{Continued on next page}} \\
+\endfoot
+
+\endlastfoot
+\rowcolor{ColorTable2}
+\multicolumn{9}{l}{\textbf{ONCOGENIC HPV TYPES}}   \\
+\arrayrulecolor{ColorWhite}\DefLineTableWhite 
+\rowcolor{ColorTable2}
+\multicolumn{9}{l}{\textbf{\quad High-risk HPV types}}   \\
+\arrayrulecolor{ColorTable}\DefLineTable 
+\BLOCK{for row in ctx.data_high_risk.values-}
+ \BLOCK{-for cell in row -}
+  \VAR{-cell.value | escape_tex-}
+  \BLOCK{-if cell.markers-}
+    \ts{\VAR{-cell.markers | join(',')-}}
+  \BLOCK{-endif-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+\rowcolor{ColorTable2}
+\multicolumn{9}{l}{\textbf{\quad Probable/possible carcinogen}}   \\
+\arrayrulecolor{ColorTable}\DefLineTable 
+\BLOCK{for row in ctx.data_posible_risk.values-}
+ \BLOCK{-for cell in row -}
+  \VAR{-cell.value | escape_tex-}
+  \BLOCK{-if cell.markers-}
+    \ts{\VAR{-cell.markers | join(',')-}}
+  \BLOCK{-endif-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+\rowcolor{ColorTable2}
+\multicolumn{9}{l}{\textbf{NON-ONCOGENIC HPV TYPES}}   \\
+\arrayrulecolor{ColorTable}\DefLineTable 
+\BLOCK{for row in ctx.data_not_onco.values-}
+ \BLOCK{-for cell in row -}
+  \VAR{-cell.value | escape_tex-}
+  \BLOCK{-if cell.markers-}
+    \ts{\VAR{-cell.markers | join(',')-}}
+  \BLOCK{-endif-}
+  \BLOCK{-if not loop.last-}
+    \VAR{-' & '-}
+  \BLOCK{-else}
+    \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+  \BLOCK{endif-}
+ \BLOCK{-endfor-}
+\BLOCK{endfor-}
+\DefEndTable
+\end{longtable}
+}
+\BLOCK{include '/hpv-infocentre/ic_references_papiloma.tex'}

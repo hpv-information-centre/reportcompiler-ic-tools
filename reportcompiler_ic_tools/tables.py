@@ -18,9 +18,7 @@ def generate_table_data(data_dict,
                         row_id_column=None,
                         format='latex',
                         collapse_refs=True,
-                        ref_type_markers=None,
-                        footer=None,
-                        markers=None):
+                        ref_type_markers=None):
     """
     Generates a new dataframe with the markers corresponding to the defined
         references (sources, notes, ...), alongside a list of the markers'
@@ -36,21 +34,17 @@ def generate_table_data(data_dict,
     :param str format: Format that the returned dataframe should comply with
     :param bool collapse_refs: Whether markers should be collapsed when
         appropriate (e.g. all cells of a column to the column header)
-    :param dict footer: Dictionary with the footer information as returned from
-        previous calls to this same function. This allows chaining several data
-        sources in one single footer.
-    :param dict markers: Dictionary with generators for markers for
+    :param dict ref_type_markers: Dictionary with generators for markers for
         each type of reference ('sources', 'notes', 'methods', 'years'). If
         None, new generators will be initialized (starting at 1 with sources,
         'a' with notes, ...).
-    :returns: Dictionary with four components: table, columns, footer, markers;
-        where table is the original dataframe with the necessary reference
-        markers, columns is the list with the table columns as will be
-        displayed, footer is a nested structure: for each type (sources, notes,
-        ...) there is a list of dictionaries with each ('marker' key) and
-        associated reference ('text' key) and markers is a dictionary with the
-        generators for the markers of each reference type.
-    :rtype: dict
+    :returns: Tuple (data, columns, references), where data is the original
+        dataframe with the necessary reference markers, columns is the list
+        with the table columns as will be displayed and references is a nested
+        structure: for each type (sources, notes, ...) there is a list of
+        dictionaries with each ('marker' key) and associated reference ('text'
+        key).
+    :rtype: tuple (dataframe, list, dict)
     """
     data = data_dict['data'].copy()
     if selected_columns is None:
@@ -84,23 +78,22 @@ def generate_table_data(data_dict,
         marker_data[col] = marker_data[col].astype(object)
         for row in marker_data.index:
             marker_data.loc[row, col] = []
-    if footer is None:
-        footer = {
-            'sources': [],
-            'notes': [],
-            'methods': [],
-            'years': [],
-        }
+    table_footer = {
+        'sources': [],
+        'notes': [],
+        'methods': [],
+        'years': [],
+    }
 
     column_markers = [[] for col in selected_columns]
     for ref_type, markers in ref_type_markers.items():
         ref_data = data_dict[ref_type]
         _build_global_refs(ref_data['global'],
-                           footer[ref_type],
+                           table_footer[ref_type],
                            markers,
                            ref_type)
         _column_markers = _build_column_refs(ref_data['column'],
-                                             footer[ref_type],
+                                             table_footer[ref_type],
                                              markers, ref_type,
                                              marker_data,
                                              selected_columns,
@@ -108,13 +101,13 @@ def generate_table_data(data_dict,
         for i, col in enumerate(column_markers):
             column_markers[i].extend(_column_markers[i])
         _build_row_refs(ref_data['row'],
-                        footer[ref_type],
+                        table_footer[ref_type],
                         markers,
                         ref_type,
                         marker_data,
                         row_id_column)
         _build_cell_refs(ref_data['cell'],
-                         footer[ref_type],
+                         table_footer[ref_type],
                          markers,
                          ref_type,
                          marker_data)
@@ -130,16 +123,16 @@ def generate_table_data(data_dict,
         _collapse_common_refs(referenced_table, column_info)
 
     for ref_type, _ in ref_type_markers.items():
-        footer[ref_type] = [{'marker': _marker, 'text': _ref}
-                            for _marker, _ref
-                            in footer[ref_type]]
+        table_footer[ref_type] = [{'marker': _marker, 'text': _ref}
+                                  for _marker, _ref
+                                  in table_footer[ref_type]]
 
-    footer['date'] = data_dict['date']
+    table_footer['date'] = data_dict['date']
 
     info_dict = {
         'table': referenced_table,
         'columns': column_info,
-        'footer': footer,
+        'footer': table_footer,
         'markers': ref_type_markers
     }
 

@@ -1,0 +1,135 @@
+<root filename="\VAR{ctx.filename}">
+  <output type="TABLE" maxDepth="5">
+    <TABLE>
+      <CAPTION><BR>\VAR{ctx.caption}</BR></CAPTION>
+      <THEAD>
+        <TR>
+
+        \BLOCK{for c in ctx.columns -}
+		
+		
+		\BLOCK{if loop.index == 1}
+		<TH></TH>
+		\BLOCK{-elif loop.index == 2-}
+		
+		\BLOCK{-else-}
+		
+		<TH>\VAR{-c.value | escape_tex-}
+                \BLOCK{-if c.markers-}
+                <SUP><i>\VAR{c.markers | join(',')}</i></SUP>
+                \BLOCK{-endif-}</TH>
+				
+		\BLOCK{-endif-}
+				
+        \BLOCK{- endfor} 
+        </TR>
+      </THEAD>
+      <TBODY>
+
+
+      \BLOCK{for row in ctx.data.values}
+        \BLOCK{-for cell in row -}
+            \BLOCK{if loop.index == 1}
+        <TR iso="\VAR{-cell.value-}">
+
+            \BLOCK{-elif loop.index == 2-}
+            \VAR{-cell.value-}
+            \BLOCK{-elif loop.last-}
+            <td>\VAR{cell.value}\BLOCK{-if cell.markers-}
+                <SUP><i>\VAR{cell.markers | join(',')}</i></SUP>
+                \BLOCK{-endif-}
+            </td>
+        </TR>
+            \BLOCK{-else-}
+            <td>\VAR{cell.value-}\BLOCK{-if cell.markers-}
+                <SUP><i>\VAR{cell.markers | join(',')}</i></SUP>
+                \BLOCK{-endif-}
+            </td>
+            \BLOCK{-endif-}
+        \BLOCK{-endfor-}
+      \BLOCK{-endfor-}
+      </TBODY>
+    </TABLE>
+
+    <TABLE>
+    <TFOOT>
+        <TR>
+          <TD colspan="11">
+
+          \BLOCK{if ctx.footer.date.date_accessed is not none}
+          <B>Data updated on \VAR{ctx.footer.date.date_accessed | format_date('%e %b %Y')} \\ </B>
+          \BLOCK{-else}
+          \VAR{ctx.footer.date.date_closing | format_date('%e %b %Y')}} \\
+          \BLOCK{-endif}
+          </TD>
+        </TR>
+
+		
+		\BLOCK{for row in ctx.methods_table.values}
+			\BLOCK{-for cell in row -}
+				\BLOCK{if loop.index == 1}
+				<TR iso="\VAR{-cell-}">
+				\BLOCK{-else-}
+				<TD colspan="11">\VAR{cell-}</TD>
+			 </TR>
+				\BLOCK{-endif-}
+			\BLOCK{-endfor-}
+		\BLOCK{endfor}
+		
+		
+		\BLOCK{for row in ctx.notes_table.values}
+			\BLOCK{-for cell in row -}
+				\BLOCK{if loop.index == 1}
+				<TR iso="\VAR{-cell-}">
+				\BLOCK{-else-}
+				<TD colspan="11">\VAR{cell-}</TD>
+			 </TR>
+				\BLOCK{-endif-}
+			\BLOCK{-endfor-}
+
+		\BLOCK{endfor}
+
+
+
+
+
+        \BLOCK{for row in ctx.years_table.values}
+			\BLOCK{-for cell in row -}
+				\BLOCK{if loop.index == 1}
+				<TR iso="\VAR{-cell-}">
+				\BLOCK{-else-}
+				<TD colspan="11">\VAR{cell-}</TD>
+			 </TR>
+				\BLOCK{-endif-}
+			\BLOCK{-endfor-}
+
+		\BLOCK{endfor}
+
+
+
+
+
+        <TR iso="\VAR{ctx.iso_list_str}">
+          <TD>
+            <U>References:</U>
+          </TD>
+        </TR>
+
+        \BLOCK{for row in ctx.sources_table.values}
+			\BLOCK{-for cell in row -}
+				\BLOCK{if loop.index == 1}
+				<TR iso="\VAR{-cell-}">
+				\BLOCK{-else-}
+				<TD colspan="11">\VAR{cell-}</TD>
+			 </TR>
+				\BLOCK{-endif-}
+			\BLOCK{-endfor-}
+
+		\BLOCK{endfor}
+
+    </TFOOT>
+  </TABLE>
+
+
+</output>
+</root>

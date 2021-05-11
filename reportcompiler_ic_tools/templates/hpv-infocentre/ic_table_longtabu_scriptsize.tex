@@ -1,4 +1,4 @@
-{\small
+{\scriptsize
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
@@ -62,19 +62,31 @@
 \endlastfoot
 
 \BLOCK{for row in ctx.data.values-}
- \BLOCK{-for cell in row -}
-  \VAR{-cell.value | escape_tex-}
-  \BLOCK{-if cell.markers-}
-    $^{\VAR{-cell.markers | join(',')-}}$
-  \BLOCK{-endif-}
-  \BLOCK{-if not loop.last-}
-    \VAR{-' & '-}
-  \BLOCK{-else}
+	\BLOCK{-for cell in row -}
+		\BLOCK{if loop.first}
+			\BLOCK{if cell.multirow > 0}
+				\arrayrulecolor{ColorTable}\DefLineTable 
+				\VAR{cell.value}
+				\BLOCK{-if cell.markers-}
+					$^{\VAR{-cell.markers | join(',')-}}$
+				\BLOCK{-endif-}
+			\BLOCK{endif}
+			\BLOCK{else}
+				\VAR{-cell.value | escape_tex-}
+				\BLOCK{-if cell.markers-}
+					$^{\VAR{-cell.markers | join(',')-}}$
+				\BLOCK{-endif-}
+			\BLOCK{endif}
+			\BLOCK{-if not loop.last-}
+			\VAR{-' & '-}
+		\BLOCK{-else}
     \\
-    \arrayrulecolor{ColorTable}\DefLineTable 
-  \BLOCK{endif-}
- \BLOCK{-endfor-}
+\BLOCK{endif-}
+\BLOCK{-endfor-}
 \BLOCK{endfor-}
+
+ 
+
 \DefEndTable
 \end{longtable}
 }

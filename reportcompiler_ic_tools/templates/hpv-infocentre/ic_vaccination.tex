@@ -1,0 +1,129 @@
+\BLOCK{if ctx.noregions != 0}	
+	\BLOCK{-for ctx in ctx.regions_latex-}
+		{\small
+		\newcommand*{\DefLineTable}{\hhline{>{\arrayrulecolor{ColorTable}}->{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+				>{\arrayrulecolor{ColorTable}}-%
+		>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+				>{\arrayrulecolor{ColorTable}}-%
+		}
+		}
+
+		\newcolumntype{P}[1]{>{\arraybackslash}m{#1}}
+		\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+		\begin{longtable}{P{.30\textwidth-2\tabcolsep}!{\color{white}\vrule width 1pt}
+					M{.35\textwidth-2\tabcolsep}!
+		{\color{white}\vrule width 1pt}
+					M{.35\textwidth-2\tabcolsep}!
+		}
+		\caption{\VAR{ctx.caption_table}} \\
+
+		\rowcolor{ColorTable}
+		 & \textbf{Female} & \textbf{Male}  \\ \arrayrulecolor{ColorTable}\hline 
+		\endfirsthead
+
+		\multicolumn{3}{c}%
+		{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+		\rowcolor{ColorTable}
+		 & \textbf{Female} & \textbf{Male}  \\ \arrayrulecolor{ColorTable}\hline 
+		\endhead
+
+		\arrayrulecolor{ColorTable}\hline 
+		\multicolumn{3}{r}{{Continued on next page}} \\
+		\endfoot
+
+		\endlastfoot
+
+		Year of introduction & \VAR{ctx.table_data.fem_year}$^{\VAR{ctx.table_data_markers.fem_year}}$ & \VAR{ctx.table_data.males_year}$^{\VAR{ctx.table_data_markers.males_year}}$ \\
+		\arrayrulecolor{ColorTable}\DefLineTable 
+		Primary target age (years) & \VAR{ctx.table_data.fem_primary_strategy}$^{\VAR{ctx.table_data_markers.fem_primary_strategy}}$ & \VAR{ctx.table_data.males_primary_strategy}$^{\VAR{ctx.table_data_markers.males_primary_strategy}}$ \\
+		\arrayrulecolor{ColorTable}\DefLineTable 
+		Organized catch-up age (years) & \VAR{ctx.table_data.fem_catchup_strategy}$^{\VAR{ctx.table_data_markers.fem_catchup_strategy}}$ & \VAR{ctx.table_data.males_catchup_strategy}$^{\VAR{ctx.table_data_markers.males_catchup_strategy}}$ \\
+		\arrayrulecolor{ColorTable}\DefLineTable 
+		Opportunistic catch-up age (years) & \VAR{ctx.table_data.fem_opportunistic_strategy}$^{\VAR{ctx.table_data_markers.fem_opportunistic_strategy}}$ & \VAR{ctx.table_data.males_opportunistic_strategy}$^{\VAR{ctx.table_data_markers.males_opportunistic_strategy}}$ \\
+		\arrayrulecolor{ColorTable}\DefLineTable 
+		Strategy & \VAR{ctx.table_data.fem_del_strategy}$^{\VAR{ctx.table_data_markers.fem_del_strategy}}$ & \VAR{ctx.table_data.males_del_strategy}$^{\VAR{ctx.table_data_markers.males_del_strategy}}$ \\
+		\arrayrulecolor{ColorTable}\DefLineTable 
+		Schedule & \VAR{ctx.table_data.fem_vaccine}$^{\VAR{ctx.table_data_markers.fem_vaccine}}$ & \VAR{ctx.table_data.males_vaccine}$^{\VAR{ctx.table_data_markers.males_vaccine}}$ \\
+		\arrayrulecolor{ColorTable}\DefLineTable 
+		
+
+		\DefEndTable
+		\end{longtable}
+		}
+		
+		\vspace{-4mm}
+		{\tiny
+		\BLOCK{if ctx.footer_table.date.date_accessed}
+		% External data source
+		\textbf{\scriptsize{Data accessed on }
+		\VAR{ctx.footer_table.date.date_accessed | format_date('%e %b %Y')}} \\
+		\BLOCK{-else}
+		% Internal data source
+		\textbf{Closing database date: 
+		\VAR{ctx.footer_table.date.date_closing | format_date('%e %b %Y')}} \\
+		\textbf{First publication date:
+		\VAR{ctx.footer_table.date.date_publication | format_date('%e %b %Y')}} \\
+		\BLOCK{-endif}
+		\BLOCK{if ctx.footer_table.methods}
+			\BLOCK{for f in ctx.footer_table.methods}
+				\BLOCK{if f.marker != ''}
+		$^{\VAR{f.marker | escape_tex}}$
+				\BLOCK{-else-}
+
+				\BLOCK{-endif}
+		 \VAR{f.text | escape_tex} \\
+			\BLOCK{endfor}
+		\BLOCK{endif}
+		\BLOCK{if ctx.footer_table.notes}
+			\BLOCK{for f in ctx.footer_table.notes}
+				\BLOCK{if f.marker != ''}
+		$^{\VAR{f.marker | escape_tex}}$
+				\BLOCK{-else-}
+
+				\BLOCK{-endif}
+		 \VAR{f.text | escape_tex} \\
+			\BLOCK{endfor}
+		\BLOCK{endif}
+		\BLOCK{if ctx.footer_table.years}
+			Year of estimate: 
+			\BLOCK{for f in ctx.footer_table.years}
+				\BLOCK{if f.marker != ''}
+		$^{\VAR{f.marker | escape_tex}}$
+				\BLOCK{-else-}
+
+				\BLOCK{-endif}
+		 \VAR{f.text | escape_tex} \\
+			\BLOCK{endfor}
+		\BLOCK{endif}
+		\BLOCK{if ctx.footer_table.sources}
+			\underline{Data Sources}: \\
+			\BLOCK{for f in ctx.footer_table.sources}
+				\BLOCK{if f.marker != ''}
+		$^{\VAR{f.marker | escape_tex}}$
+				\BLOCK{-else-}
+
+				\BLOCK{-endif}
+		 \VAR{f.text | escape_tex} \\
+			\BLOCK{endfor}
+		\BLOCK{endif}
+		\par
+		}
+
+		
+		\normalsize
+		
+		\begin{figure}[H]
+		  \caption{\VAR{ctx.caption}}
+		  \centering
+			\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path | escape_path}}
+			\BLOCK{if ctx.label is defined}
+				\label{fig:\VAR{ctx.label | escape_tex}}
+			\BLOCK{endif}
+		\end{figure}
+		\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+		\clearpage
+	\BLOCK{-endfor-}
+\BLOCK{-else}
+No data available
+\BLOCK{-endif}

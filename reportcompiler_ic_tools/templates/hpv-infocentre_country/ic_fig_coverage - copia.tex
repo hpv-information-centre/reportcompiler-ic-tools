@@ -1,0 +1,12 @@
+\begin{table}
+\caption{\VAR{ctx.caption}}
+\begin{center}
+\begin{tabular}{ |cc| } 
+ \hline
+ \includegraphics[height=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_1 | escape_path}} & \includegraphics[height=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_2 | escape_path}} \\
+ \includegraphics[height=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_3 | escape_path}} & \includegraphics[height=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path_4 | escape_path}} \\
+ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\BLOCK{include '/hpv-infocentre/ic_references.tex'}

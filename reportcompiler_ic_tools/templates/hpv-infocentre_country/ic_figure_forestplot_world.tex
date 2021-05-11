@@ -1,0 +1,12 @@
+\BLOCK{for ctx in ctx.data}
+	\begin{figure}[H]
+	  \caption{\VAR{ctx.caption}}
+	  \centering
+		\fbox{\includegraphics[width=\VAR{ctx.image_width | default('1')}\textwidth]{\VAR{ctx.image_path | escape_path}}}
+		\BLOCK{if ctx.label is defined}
+			\label{fig:\VAR{ctx.label | escape_tex}}
+		\BLOCK{endif}
+	\end{figure}
+
+	\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+\BLOCK{endfor}

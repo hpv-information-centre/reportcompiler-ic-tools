@@ -1,0 +1,113 @@
+
+\begin{table}[h!]
+    \footnotesize
+    \captionsetup{margin=0pt}
+    \caption{\label{SUM_03}Key Statistics on \VAR{ctx.country_name}}
+    {\renewcommand*{\arraystretch}{1} % Vertical space for rows: 1.5 ==> 50% greater
+    \newcommand*{\DefLineTable}{\hhline{%
+    >{\arrayrulecolor{ColorTable}}---%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}-}%
+    }
+    \newcommand*{\DefLineTableTwo}{\hhline{%
+    >{\arrayrulecolor{white}}-% 
+    >{\arrayrulecolor{ColorTable}}-%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}-%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}-}%
+    }
+    \newcommand*{\DefLineTableThree}{\hhline{%
+    >{\arrayrulecolor{white}}--% 
+    >{\arrayrulecolor{ColorTable}}-%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}-}%
+    }
+    \newcommand*{\DefLineTableFour}{\hhline{%
+    >{\arrayrulecolor{ColorTable}}--%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}--}%
+    }
+    \newcommand*{\DefLineTableFive}{\hhline{%
+    >{\arrayrulecolor{white}}-%
+    >{\arrayrulecolor{ColorTable}}--%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}-}%
+    }
+    \newcommand*{\DefLineTableSix}{\hhline{%
+    >{\arrayrulecolor{ColorTable}}-%
+    >{\arrayrulecolor{white}\doublerulesepcolor{white}}||%
+    >{\arrayrulecolor{ColorTable}}---}%
+    }
+    \newcolumntype{K}{p{4.25cm}}   % Col 1
+    \newcolumntype{L}{p{5.5cm}}    % Col 2
+    \newcolumntype{M}{p{2.7cm}}    % Col 3 & 4
+    \newcolumntype{O}{p{10cm}}     % Col 1+2
+    \newcolumntype{P}{p{13.3cm}}   % Col 1+2+3
+    \newcolumntype{Q}{p{5.8cm}}    % Col 3+4
+    \newcolumntype{R}{p{8.7cm}}    % Col 2+3
+    \newcolumntype{S}{p{11.8cm}}   % Col 2+3+4
+    \begin{tabularx}{\textwidth}{KLMM}
+    \DefBeginTable
+    \multicolumn{4}{>{\columncolor{ColorTable}}X}{\textbf{Population}} \\ 
+    \multicolumn{3}{P}{Women at risk for cervical cancer (Female population aged >=15 yrs)} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.population}}  \\
+    \multicolumn{4}{>{\columncolor{ColorTable}}X}{\textbf{Burden of cervical cancer and other HPV-related cancers}} \\
+    \multicolumn{3}{P}{Annual number of cervical cancer cases} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.incidence}}  \\
+    \DefLineTable
+    \multicolumn{3}{P}{Annual number of cervical cancer deaths} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.mortality}}  \\
+    \hline
+    \multicolumn{2}{O}{Crude incidence rates per 100,000 population:} & \multicolumn{1}{M}{\raggedleft Male} & \multicolumn{1}{M}{\raggedleft Female} \\
+    \DefLineTableThree
+    \DefLineTableThree\multicolumn{1}{K}{} & \multicolumn{1}{L}{\raggedleft Cervical cancer} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.cerv_male}} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.cerv_female}}  \\ 
+    \DefLineTableTwo
+    \multicolumn{1}{K}{} & \multicolumn{1}{L}{\raggedleft Anal cancer} & \multicolumn{1}{M}{\raggedleft\VAR{ctx.anal_male}} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.anal_female}} \\ 
+	\DefLineTableTwo
+    \multicolumn{1}{K}{} & \multicolumn{1}{L}{\raggedleft Vulva cancer} & \multicolumn{1}{M}{\raggedleft\VAR{ctx.vulva_male}} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.vulva_female}} \\ 
+	\DefLineTableTwo
+    \multicolumn{1}{K}{} & \multicolumn{1}{L}{\raggedleft Vaginal cancer} & \multicolumn{1}{M}{\raggedleft\VAR{ctx.vagina_male}} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.vagina_female}} \\ 
+    \DefLineTableTwo
+    \multicolumn{1}{K}{} & \multicolumn{1}{L}{\raggedleft Penile cancer} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.penile_male}} & \multicolumn{1}{M}{\raggedleft\VAR{ctx.penile_female}} \\
+    \DefLineTableTwo
+    \multicolumn{1}{K}{} & \multicolumn{1}{L}{\raggedleft Oropharyngeal cancer} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.pharynx_male}} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.pharynx_female} } \\
+    \DefLineTableTwo
+    \multicolumn{1}{K}{} & \multicolumn{1}{L}{\raggedleft Oral cavity cancer} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.oral_male} } & \multicolumn{1}{M}{\raggedleft \VAR{ctx.oral_female}} \\
+    \DefLineTableTwo
+    \multicolumn{1}{K}{} & \multicolumn{1}{L}{\raggedleft Laryngeal cancer} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.larynx_male}} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.larynx_female}} \\
+    \multicolumn{4}{>{\columncolor{ColorTable}}X}{\textbf{Burden of cervical HPV infection}} \\
+    \multicolumn{4}{X}{Prevalence (\%) of HPV 16 and/or HPV 18 among women with:} \\\multicolumn{1}{K}{} & \multicolumn{2}{R}{\raggedleft Normal cytology} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.nc}} \\
+    \DefLineTableFive\multicolumn{1}{K}{} & \multicolumn{2}{R}{\raggedleft Low-grade cervical lesions (LSIL/CIN-1)} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.lsil}} \\
+    \DefLineTableFive\multicolumn{1}{K}{} & \multicolumn{2}{R}{\raggedleft High-grade cervical lesions (HSIL/CIN-2/CIN-3/CIS)} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.hsil}} \\
+    \DefLineTableFive\multicolumn{1}{K}{} & \multicolumn{2}{R}{\raggedleft Cervical cancer} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.cc}} \\
+    \multicolumn{4}{>{\columncolor{ColorTable}}X}{\textbf{Other factors contributing to cervical cancer}} \\
+    \multicolumn{3}{P}{Smoking prevalence (\%) [95\% UI], women}  & \multicolumn{1}{M}{\raggedleft \VAR{ctx.smoking_women_current}}  \\
+    \DefLineTable\multicolumn{3}{P}{Total fertility rate (live births per women)} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.parity}}  \\
+    \DefLineTable\multicolumn{3}{P}{Oral contraceptive use (\%)} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.oral}}  \\
+    \DefLineTable\multicolumn{3}{P}{HIV prevalence (\%) [95\% UI], women (15-49 years)} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.hiv_15_49_fem}}  \\\multicolumn{4}{>{\columncolor{ColorTable}}X}{\textbf{Sexual behaviour}} \\
+    \multicolumn{3}{P}{Percentage of 15-year-old who have had sexual intercourse (men/women)} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.boys_per}/\VAR{ctx.girls_per}}  \\
+    \DefLineTable
+    \multicolumn{3}{P}{Range of median age at first sexual intercourse (men/women)} & \multicolumn{1}{M}{\raggedleft \VAR{ctx.men_median}/\VAR{ctx.women_median}}  \\\multicolumn{4}{>{\columncolor{ColorTable}}X}{\textbf{Cervical screening practices and recommendations}} \\
+    \multicolumn{1}{K}{Cervical cancer screening coverage, \% (age and screening interval, reference)} & \multicolumn{3}{S}{\raggedleft \VAR{ctx.screening_country}}  \\
+    \DefLineTableSix
+    \multicolumn{1}{K}{Screening ages (years)} & \multicolumn{3}{S}{\raggedleft \VAR{ctx.screening_ages}}  \\
+    \DefLineTableSix
+    \multicolumn{1}{K}{Screening interval (years) or frequency of screens} & \multicolumn{3}{S}{\raggedleft \VAR{ctx.screening_interval}}  \\
+    \multicolumn{4}{>{\columncolor{ColorTable}}X}{\textbf{HPV vaccine in females}} \\
+    \multicolumn{3}{P}{HPV vaccination programme}  & \multicolumn{1}{M}{\raggedleft \VAR{ctx.hpv_introduction.program}}  \\
+    \DefLineTable
+    \multicolumn{3}{P}{Year of introduction}  & \multicolumn{1}{M}{\raggedleft \VAR{ctx.hpv_introduction.year_intro}}  \\
+    \DefLineTable
+    \multicolumn{3}{P}{Year of the estimation}  & \multicolumn{1}{M}{\raggedleft \VAR{ctx.hpv_introduction.year_estimation}}  \\
+    \DefLineTable
+    \multicolumn{3}{P}{HPV coverage – first dose (\%)}  & \multicolumn{1}{M}{\raggedleft \VAR{ctx.hpv_introduction.first_dose}}  \\
+    \DefLineTable
+    \multicolumn{3}{P}{HPV coverage – last dose (\%)}  & \multicolumn{1}{M}{\raggedleft \VAR{ctx.hpv_introduction.last_dose}}  \\
+    \DefEndTable
+    \end{tabularx}}
+    \end{table}
+\vspace{-4mm}
+{\tiny
+$^{*}$ Please see the specific sections for more information. \\
+\par
+}
+    
+    \clearpage

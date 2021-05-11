@@ -1,0 +1,57 @@
+{\small
+\newcommand*{\DefLineTable}{\hhline{>{\arrayrulecolor{ColorTable}}->{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+}
+}
+
+\newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{L{.70\textwidth-2\tabcolsep}!{\color{white}\vrule width 1pt}
+			L{.30\textwidth-2\tabcolsep}!
+}
+\caption{\VAR{ctx.caption}} \\
+
+\rowcolor{ColorTable}
+ &  \\ \arrayrulecolor{ColorTable}\hline 
+\endfirsthead
+
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\rowcolor{ColorTable}
+ &  \\ \arrayrulecolor{ColorTable}\hline 
+\endhead
+
+\arrayrulecolor{ColorTable}\hline 
+\multicolumn{2}{r}{{Continued on next page}} \\
+\endfoot
+
+\endlastfoot
+
+    \arrayrulecolor{ColorTable}\DefLineTable 
+Availability of a cervical cancer screening programme$^{\VAR{ctx.table_data.screening.markers.program_yn_markers}}$ & \VAR{ctx.table_data.screening.program_yn} \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+Quality assurance structure and mandate to supervise and to monitor the screening process$^{\VAR{ctx.table_data.screening.markers.quality_markers}}$ & \VAR{ctx.table_data.screening.quality} \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+Active invitation to screening$^{\VAR{ctx.table_data.screening.markers.invitation_markers}}$ & \VAR{ctx.table_data.screening.invitation} \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+Main screening test used for primary screening$^{\VAR{ctx.table_data.screening.markers.technique_markers}}$ & \VAR{ctx.table_data.screening.technique} \\
+    \arrayrulecolor{ColorTable}\DefLineTable 
+Undergoing demonstration projects$^{\VAR{ctx.table_data.screening.markers.pilot_markers}}$ & \VAR{ctx.table_data.screening.pilot} \\
+    \arrayrulecolor{ColorTable}\DefLineTable
+Screening ages (years)$^{\VAR{ctx.table_data.screening.markers.target_ages_markers}}$ & \VAR{ctx.table_data.screening.target_ages} \\
+    \arrayrulecolor{ColorTable}\DefLineTable
+Screening interval or frequency of screenings$^{\VAR{ctx.table_data.screening.markers.s_interval_markers}}$ & \VAR{ctx.table_data.screening.s_interval} \\
+    \arrayrulecolor{ColorTable}\DefLineTable
+
+    \arrayrulecolor{ColorTable}\DefLineTable 
+\DefEndTable
+\end{longtable}
+}
+\BLOCK{include '/hpv-infocentre/ic_references.tex'}
+\normalsize
+
+
+
+
+

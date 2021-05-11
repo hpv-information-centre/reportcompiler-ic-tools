@@ -1,28 +1,13 @@
-{\small
-\newcommand*{\DefLineTable}{\hhline{
-\BLOCK{-for c in ctx.columns-}
-	\BLOCK{-if loop.first-}
-		>{\arrayrulecolor{ColorTable}}-
-	\BLOCK{-else-}
-		>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
-		>{\arrayrulecolor{ColorTable}}-%
-	\BLOCK{endif-}
-\BLOCK{-endfor-}}
-}
-
-\newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
-
+%\onecolumn
 \begin{longtable}{
     \BLOCK{-if 'table_latex' in ctx and 'column_spec' in ctx.table_latex-}
         \VAR{-ctx.table_latex.column_spec-}
     \BLOCK{-else-}
         \BLOCK{-for c in ctx.columns-}
 			\BLOCK{-if loop.first-}
-			L{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			l
 			\BLOCK{-else-}
-			{\color{white}\vrule width 1pt}
-			C{\VAR{-c.width | escape_tex-}\textwidth-2\tabcolsep}!
+			c
 			\BLOCK{endif-}
         \BLOCK{-endfor-}
     \BLOCK{endif-}
@@ -34,7 +19,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{{\VAR{c.markers | join(',')}}}$
+            \ts{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -48,7 +33,7 @@
     \textbf{
         \VAR{-c.value | escape_tex-}
         \BLOCK{-if c.markers-}
-            $^{\VAR{c.markers | join(',')}}$
+            \ts{\VAR{c.markers | join(',')}}
         \BLOCK{-endif-}
     } 
         \VAR{-' & ' if not loop.last else ' \\\\ \\arrayrulecolor{ColorTable}\\hline'-}
@@ -65,18 +50,16 @@
  \BLOCK{-for cell in row -}
   \VAR{-cell.value | escape_tex-}
   \BLOCK{-if cell.markers-}
-    $^{\VAR{-cell.markers | join(',')-}}$
+    \ts{\VAR{-cell.markers | join(',')-}}
   \BLOCK{-endif-}
   \BLOCK{-if not loop.last-}
     \VAR{-' & '-}
   \BLOCK{-else}
     \\
-    \arrayrulecolor{ColorTable}\DefLineTable 
+    \arrayrulecolor{ColorTable}\hline 
   \BLOCK{endif-}
  \BLOCK{-endfor-}
 \BLOCK{endfor-}
-\DefEndTable
 \end{longtable}
-}
+
 \BLOCK{include '/hpv-infocentre/ic_references.tex'}
-\normalsize

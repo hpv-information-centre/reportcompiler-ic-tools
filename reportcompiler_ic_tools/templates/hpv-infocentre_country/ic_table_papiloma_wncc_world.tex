@@ -1,0 +1,105 @@
+\begin{table}[h!]
+    \caption{\VAR{ctx.caption}}
+    \DefBeginTable
+    {\ssmall\renewcommand*{\arraystretch}{1} % Vertical space for rows: 1.5 ==> 50% greater
+    \begin{tabularx}{\textwidth}{@{}p{0.3cm}@{}p{2.7cm}YY@{\ }l|YY@{\ }l|YY@{\ }l|YY@{\ }l@{}}
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{} & %
+    \multicolumn{3}{>{\columncolor{ColorTable}}c}{\textbf{Normal cytology}} & %
+    \multicolumn{3}{>{\columncolor{ColorTable}}c}{\textbf{Low-grade lesions}} & %
+    \multicolumn{3}{>{\columncolor{ColorTable}}c}{\textbf{High-grade lesions}} & %
+    \multicolumn{3}{>{\columncolor{ColorTable}}c}{\textbf{Cervical cancer}}
+    \tabularnewline
+    \multicolumn{2}{>{\columncolor{ColorTable}}l}{\textbf{Country /Region}} & %
+    \multicolumn{1}{>{\columncolor{ColorTable}}c}{\textbf{No.}} & %
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{\textbf{HPV Prev}} & %
+    \multicolumn{1}{>{\columncolor{ColorTable}}c}{\textbf{No.}} & %
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{\textbf{HPV Prev}} & %
+    \multicolumn{1}{>{\columncolor{ColorTable}}c}{\textbf{No.}} & %
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{\textbf{HPV Prev}} & %
+    \multicolumn{1}{>{\columncolor{ColorTable}}c}{\textbf{No.}} & %
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{\textbf{HPV Prev}}
+    \tabularnewline
+    \multicolumn{2}{>{\columncolor{ColorTable}}l}{\textbf{}} & %
+    \multicolumn{1}{>{\columncolor{ColorTable}}c}{\textbf{tested}} & %
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{\textbf{(95\% CI)}} & %
+    \multicolumn{1}{>{\columncolor{ColorTable}}c}{\textbf{tested}} & %
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{\textbf{(95\% CI)}} & %
+    \multicolumn{1}{>{\columncolor{ColorTable}}c}{\textbf{tested}} & %
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{\textbf{(95\% CI)}} & %
+    \multicolumn{1}{>{\columncolor{ColorTable}}c}{\textbf{tested}} & %
+    \multicolumn{2}{>{\columncolor{ColorTable}}c}{\textbf{(95\% CI)}}
+    \tabularnewline
+    
+    \multicolumn{2}{@{}l}{\textbf{World}} & \VAR{ctx.xwx.nc_tested} & \VAR{ctx.xwx.nc_prev} & \VAR{ctx.xwx.nc_ci} & \VAR{ctx.xwx.lg_tested} & \VAR{ctx.xwx.lg_prev} & \VAR{ctx.xwx.lg_ci} & \VAR{ctx.xwx.hg_tested} & \VAR{ctx.xwx.hg_prev} & \VAR{ctx.xwx.hg_ci} & \VAR{ctx.xwx.nc_tested} & \VAR{ctx.xwx.cc_prev} & \VAR{ctx.xwx.cc_ci} \\ \hline
+    \multicolumn{2}{@{}l}{\textbf{Less developed regions}} & \VAR{ctx.xdm.nc_tested} & \VAR{ctx.xdm.nc_prev} & \VAR{ctx.xdm.nc_ci} & \VAR{ctx.xdm.lg_tested} & \VAR{ctx.xdm.lg_prev} & \VAR{ctx.xdm.lg_ci} & \VAR{ctx.xdm.hg_tested} & \VAR{ctx.xdm.hg_prev} & \VAR{ctx.xdm.hg_ci} & \VAR{ctx.xdm.nc_tested} & \VAR{ctx.xdm.cc_prev} & \VAR{ctx.xdm.cc_ci} \\ \hline
+    \multicolumn{2}{@{}l}{\textbf{More developed regions}} & \VAR{ctx.xdl.nc_tested} & \VAR{ctx.xdl.nc_prev} & \VAR{ctx.xdl.nc_ci} & \VAR{ctx.xdl.lg_tested} & \VAR{ctx.xdl.lg_prev} & \VAR{ctx.xdl.lg_ci} & \VAR{ctx.xdl.hg_tested} & \VAR{ctx.xdl.hg_prev} & \VAR{ctx.xdl.hg_ci} & \VAR{ctx.xdl.nc_tested} & \VAR{ctx.xdl.cc_prev} & \VAR{ctx.xdl.cc_ci} \\ \hline
+    \multicolumn{2}{@{}l}{\textbf{Africa}} & \VAR{ctx.xfx.nc_tested} & \VAR{ctx.xfx.nc_prev} & \VAR{ctx.xfx.nc_ci} & \VAR{ctx.xfx.lg_tested} & \VAR{ctx.xfx.lg_prev} & \VAR{ctx.xfx.lg_ci} & \VAR{ctx.xfx.hg_tested} & \VAR{ctx.xfx.hg_prev} & \VAR{ctx.xfx.hg_ci} & \VAR{ctx.xfx.nc_tested} & \VAR{ctx.xfx.cc_prev} & \VAR{ctx.xfx.cc_ci} \\ \hline
+    &Eastern Africa & \VAR{ctx.xfe.nc_tested} & \VAR{ctx.xfe.nc_prev} & \VAR{ctx.xfe.nc_ci} & \VAR{ctx.xfe.lg_tested} & \VAR{ctx.xfe.lg_prev} & \VAR{ctx.xfe.lg_ci} & \VAR{ctx.xfe.hg_tested} & \VAR{ctx.xfe.hg_prev} & \VAR{ctx.xfe.hg_ci} & \VAR{ctx.xfe.nc_tested} & \VAR{ctx.xfe.cc_prev} & \VAR{ctx.xfe.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Middle Africa & \VAR{ctx.xfm.nc_tested} & \VAR{ctx.xfm.nc_prev} & \VAR{ctx.xfm.nc_ci} & \VAR{ctx.xfm.lg_tested} & \VAR{ctx.xfm.lg_prev} & \VAR{ctx.xfm.lg_ci} & \VAR{ctx.xfm.hg_tested} & \VAR{ctx.xfm.hg_prev} & \VAR{ctx.xfm.hg_ci} & \VAR{ctx.xfm.nc_tested} & \VAR{ctx.xfm.cc_prev} & \VAR{ctx.xfm.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Northern Africa & \VAR{ctx.xfn.nc_tested} & \VAR{ctx.xfn.nc_prev} & \VAR{ctx.xfn.nc_ci} & \VAR{ctx.xfn.lg_tested} & \VAR{ctx.xfn.lg_prev} & \VAR{ctx.xfn.lg_ci} & \VAR{ctx.xfn.hg_tested} & \VAR{ctx.xfn.hg_prev} & \VAR{ctx.xfn.hg_ci} & \VAR{ctx.xfn.nc_tested} & \VAR{ctx.xfn.cc_prev} & \VAR{ctx.xfn.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Southern Africa & \VAR{ctx.xfs.nc_tested} & \VAR{ctx.xfs.nc_prev} & \VAR{ctx.xfs.nc_ci} & \VAR{ctx.xfs.lg_tested} & \VAR{ctx.xfs.lg_prev} & \VAR{ctx.xfs.lg_ci} & \VAR{ctx.xfs.hg_tested} & \VAR{ctx.xfs.hg_prev} & \VAR{ctx.xfs.hg_ci} & \VAR{ctx.xfs.nc_tested} & \VAR{ctx.xfs.cc_prev} & \VAR{ctx.xfs.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Western Africa & \VAR{ctx.xfw.nc_tested} & \VAR{ctx.xfw.nc_prev} & \VAR{ctx.xfw.nc_ci} & \VAR{ctx.xfw.lg_tested} & \VAR{ctx.xfw.lg_prev} & \VAR{ctx.xfw.lg_ci} & \VAR{ctx.xfw.hg_tested} & \VAR{ctx.xfw.hg_prev} & \VAR{ctx.xfw.hg_ci} & \VAR{ctx.xfw.nc_tested} & \VAR{ctx.xfw.cc_prev} & \VAR{ctx.xfw.cc_ci} \\
+    \cline{2-14}
+    \multicolumn{2}{@{}l}{\textbf{Americas}} & \VAR{ctx.xmx.nc_tested} & \VAR{ctx.xmx.nc_prev} & \VAR{ctx.xmx.nc_ci} & \VAR{ctx.xmx.lg_tested} & \VAR{ctx.xmx.lg_prev} & \VAR{ctx.xmx.lg_ci} & \VAR{ctx.xmx.hg_tested} & \VAR{ctx.xmx.hg_prev} & \VAR{ctx.xmx.hg_ci} & \VAR{ctx.xmx.nc_tested} & \VAR{ctx.xmx.cc_prev} & \VAR{ctx.xmx.cc_ci} \\ \hline
+    &Caribbean & \VAR{ctx.xmb.nc_tested} & \VAR{ctx.xmb.nc_prev} & \VAR{ctx.xmb.nc_ci} & \VAR{ctx.xmb.lg_tested} & \VAR{ctx.xmb.lg_prev} & \VAR{ctx.xmb.lg_ci} & \VAR{ctx.xmb.hg_tested} & \VAR{ctx.xmb.hg_prev} & \VAR{ctx.xmb.hg_ci} & \VAR{ctx.xmb.nc_tested} & \VAR{ctx.xmb.cc_prev} & \VAR{ctx.xmb.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Central America & \VAR{ctx.xmc.nc_tested} & \VAR{ctx.xmc.nc_prev} & \VAR{ctx.xmc.nc_ci} & \VAR{ctx.xmc.lg_tested} & \VAR{ctx.xmc.lg_prev} & \VAR{ctx.xmc.lg_ci} & \VAR{ctx.xmc.hg_tested} & \VAR{ctx.xmc.hg_prev} & \VAR{ctx.xmc.hg_ci} & \VAR{ctx.xmc.nc_tested} & \VAR{ctx.xmc.cc_prev} & \VAR{ctx.xmc.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Northern America & \VAR{ctx.xmn.nc_tested} & \VAR{ctx.xmn.nc_prev} & \VAR{ctx.xmn.nc_ci} & \VAR{ctx.xmn.lg_tested} & \VAR{ctx.xmn.lg_prev} & \VAR{ctx.xmn.lg_ci} & \VAR{ctx.xmn.hg_tested} & \VAR{ctx.xmn.hg_prev} & \VAR{ctx.xmn.hg_ci} & \VAR{ctx.xmn.nc_tested} & \VAR{ctx.xmn.cc_prev} & \VAR{ctx.xmn.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &South America & \VAR{ctx.xms.nc_tested} & \VAR{ctx.xms.nc_prev} & \VAR{ctx.xms.nc_ci} & \VAR{ctx.xms.lg_tested} & \VAR{ctx.xms.lg_prev} & \VAR{ctx.xms.lg_ci} & \VAR{ctx.xms.hg_tested} & \VAR{ctx.xms.hg_prev} & \VAR{ctx.xms.hg_ci} & \VAR{ctx.xms.nc_tested} & \VAR{ctx.xms.cc_prev} & \VAR{ctx.xms.cc_ci} \\
+    \cline{2-14}
+    \multicolumn{2}{@{}l}{\textbf{Asia}} & \VAR{ctx.xsx.nc_tested} & \VAR{ctx.xsx.nc_prev} & \VAR{ctx.xsx.nc_ci} & \VAR{ctx.xsx.lg_tested} & \VAR{ctx.xsx.lg_prev} & \VAR{ctx.xsx.lg_ci} & \VAR{ctx.xsx.hg_tested} & \VAR{ctx.xsx.hg_prev} & \VAR{ctx.xsx.hg_ci} & \VAR{ctx.xsx.nc_tested} & \VAR{ctx.xsx.cc_prev} & \VAR{ctx.xsx.cc_ci} \\ \hline
+    &Central Asia & \VAR{ctx.xsc.nc_tested} & \VAR{ctx.xsc.nc_prev} & \VAR{ctx.xsc.nc_ci} & \VAR{ctx.xsc.lg_tested} & \VAR{ctx.xsc.lg_prev} & \VAR{ctx.xsc.lg_ci} & \VAR{ctx.xsc.hg_tested} & \VAR{ctx.xsc.hg_prev} & \VAR{ctx.xsc.hg_ci} & \VAR{ctx.xsc.nc_tested} & \VAR{ctx.xsc.cc_prev} & \VAR{ctx.xsc.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Eastern Asia & \VAR{ctx.xse.nc_tested} & \VAR{ctx.xse.nc_prev} & \VAR{ctx.xse.nc_ci} & \VAR{ctx.xse.lg_tested} & \VAR{ctx.xse.lg_prev} & \VAR{ctx.xse.lg_ci} & \VAR{ctx.xse.hg_tested} & \VAR{ctx.xse.hg_prev} & \VAR{ctx.xse.hg_ci} & \VAR{ctx.xse.nc_tested} & \VAR{ctx.xse.cc_prev} & \VAR{ctx.xse.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &South-Eastern Asia & \VAR{ctx.xst.nc_tested} & \VAR{ctx.xst.nc_prev} & \VAR{ctx.xst.nc_ci} & \VAR{ctx.xst.lg_tested} & \VAR{ctx.xst.lg_prev} & \VAR{ctx.xst.lg_ci} & \VAR{ctx.xst.hg_tested} & \VAR{ctx.xst.hg_prev} & \VAR{ctx.xst.hg_ci} & \VAR{ctx.xst.nc_tested} & \VAR{ctx.xst.cc_prev} & \VAR{ctx.xst.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Southern Asia & \VAR{ctx.xss.nc_tested} & \VAR{ctx.xss.nc_prev} & \VAR{ctx.xss.nc_ci} & \VAR{ctx.xss.lg_tested} & \VAR{ctx.xss.lg_prev} & \VAR{ctx.xss.lg_ci} & \VAR{ctx.xss.hg_tested} & \VAR{ctx.xss.hg_prev} & \VAR{ctx.xss.hg_ci} & \VAR{ctx.xss.nc_tested} & \VAR{ctx.xss.cc_prev} & \VAR{ctx.xss.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Western Asia & \VAR{ctx.xsw.nc_tested} & \VAR{ctx.xsw.nc_prev} & \VAR{ctx.xsw.nc_ci} & \VAR{ctx.xsw.lg_tested} & \VAR{ctx.xsw.lg_prev} & \VAR{ctx.xsw.lg_ci} & \VAR{ctx.xsw.hg_tested} & \VAR{ctx.xsw.hg_prev} & \VAR{ctx.xsw.hg_ci} & \VAR{ctx.xsw.nc_tested} & \VAR{ctx.xsw.cc_prev} & \VAR{ctx.xsw.cc_ci} \\
+    \cline{2-14}
+    \multicolumn{2}{@{}l}{\textbf{Europe}} & \VAR{ctx.xex.nc_tested} & \VAR{ctx.xex.nc_prev} & \VAR{ctx.xex.nc_ci} & \VAR{ctx.xex.lg_tested} & \VAR{ctx.xex.lg_prev} & \VAR{ctx.xex.lg_ci} & \VAR{ctx.xex.hg_tested} & \VAR{ctx.xex.hg_prev} & \VAR{ctx.xex.hg_ci} & \VAR{ctx.xex.nc_tested} & \VAR{ctx.xex.cc_prev} & \VAR{ctx.xex.cc_ci} \\ \hline
+    &Eastern Europe & \VAR{ctx.xee.nc_tested} & \VAR{ctx.xee.nc_prev} & \VAR{ctx.xee.nc_ci} & \VAR{ctx.xee.lg_tested} & \VAR{ctx.xee.lg_prev} & \VAR{ctx.xee.lg_ci} & \VAR{ctx.xee.hg_tested} & \VAR{ctx.xee.hg_prev} & \VAR{ctx.xee.hg_ci} & \VAR{ctx.xee.nc_tested} & \VAR{ctx.xee.cc_prev} & \VAR{ctx.xee.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Northern Europe & \VAR{ctx.xen.nc_tested} & \VAR{ctx.xen.nc_prev} & \VAR{ctx.xen.nc_ci} & \VAR{ctx.xen.lg_tested} & \VAR{ctx.xen.lg_prev} & \VAR{ctx.xen.lg_ci} & \VAR{ctx.xen.hg_tested} & \VAR{ctx.xen.hg_prev} & \VAR{ctx.xen.hg_ci} & \VAR{ctx.xen.nc_tested} & \VAR{ctx.xen.cc_prev} & \VAR{ctx.xen.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Southern Europe & \VAR{ctx.xes.nc_tested} & \VAR{ctx.xes.nc_prev} & \VAR{ctx.xes.nc_ci} & \VAR{ctx.xes.lg_tested} & \VAR{ctx.xes.lg_prev} & \VAR{ctx.xes.lg_ci} & \VAR{ctx.xes.hg_tested} & \VAR{ctx.xes.hg_prev} & \VAR{ctx.xes.hg_ci} & \VAR{ctx.xes.nc_tested} & \VAR{ctx.xes.cc_prev} & \VAR{ctx.xes.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Western Europe & \VAR{ctx.xew.nc_tested} & \VAR{ctx.xew.nc_prev} & \VAR{ctx.xew.nc_ci} & \VAR{ctx.xew.lg_tested} & \VAR{ctx.xew.lg_prev} & \VAR{ctx.xew.lg_ci} & \VAR{ctx.xew.hg_tested} & \VAR{ctx.xew.hg_prev} & \VAR{ctx.xew.hg_ci} & \VAR{ctx.xew.nc_tested} & \VAR{ctx.xew.cc_prev} & \VAR{ctx.xew.cc_ci} \\
+    \cline{2-14}
+    \multicolumn{2}{@{}l}{\textbf{Oceania}} & \VAR{ctx.xox.nc_tested} & \VAR{ctx.xox.nc_prev} & \VAR{ctx.xox.nc_ci} & \VAR{ctx.xox.lg_tested} & \VAR{ctx.xox.lg_prev} & \VAR{ctx.xox.lg_ci} & \VAR{ctx.xox.hg_tested} & \VAR{ctx.xox.hg_prev} & \VAR{ctx.xox.hg_ci} & \VAR{ctx.xox.nc_tested} & \VAR{ctx.xox.cc_prev} & \VAR{ctx.xox.cc_ci} \\ \hline
+    &Australia \& New Zealand & \VAR{ctx.xoa.nc_tested} & \VAR{ctx.xoa.nc_prev} & \VAR{ctx.xoa.nc_ci} & \VAR{ctx.xoa.lg_tested} & \VAR{ctx.xoa.lg_prev} & \VAR{ctx.xoa.lg_ci} & \VAR{ctx.xoa.hg_tested} & \VAR{ctx.xoa.hg_prev} & \VAR{ctx.xoa.hg_ci} & \VAR{ctx.xoa.nc_tested} & \VAR{ctx.xoa.cc_prev} & \VAR{ctx.xoa.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Melanesia & \VAR{ctx.xoe.nc_tested} & \VAR{ctx.xoe.nc_prev} & \VAR{ctx.xoe.nc_ci} & \VAR{ctx.xoe.lg_tested} & \VAR{ctx.xoe.lg_prev} & \VAR{ctx.xoe.lg_ci} & \VAR{ctx.xoe.hg_tested} & \VAR{ctx.xoe.hg_prev} & \VAR{ctx.xoe.hg_ci} & \VAR{ctx.xoe.nc_tested} & \VAR{ctx.xoe.cc_prev} & \VAR{ctx.xoe.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Micronesia & \VAR{ctx.xoi.nc_tested} & \VAR{ctx.xoi.nc_prev} & \VAR{ctx.xoi.nc_ci} & \VAR{ctx.xoi.lg_tested} & \VAR{ctx.xoi.lg_prev} & \VAR{ctx.xoi.lg_ci} & \VAR{ctx.xoi.hg_tested} & \VAR{ctx.xoi.hg_prev} & \VAR{ctx.xoi.hg_ci} & \VAR{ctx.xoi.nc_tested} & \VAR{ctx.xoi.cc_prev} & \VAR{ctx.xoi.cc_ci} \\
+    \cline{2-14}
+    \cline{2-14}
+    &Polynesia & \VAR{ctx.xop.nc_tested} & \VAR{ctx.xop.nc_prev} & \VAR{ctx.xop.nc_ci} & \VAR{ctx.xop.lg_tested} & \VAR{ctx.xop.lg_prev} & \VAR{ctx.xop.lg_ci} & \VAR{ctx.xop.hg_tested} & \VAR{ctx.xop.hg_prev} & \VAR{ctx.xop.hg_ci} & \VAR{ctx.xop.nc_tested} & \VAR{ctx.xop.cc_prev} & \VAR{ctx.xop.cc_ci} \\
+    \cline{2-14}
+    \DefEndTable
+    \end{tabularx}}
+    \end{table}
+    \BLOCK{include '/hpv-infocentre/ic_references_papiloma.tex'}

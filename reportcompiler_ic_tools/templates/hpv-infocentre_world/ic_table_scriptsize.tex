@@ -1,8 +1,19 @@
-{\small
+{\scriptsize
 \newcommand*{\DefLineTable}{\hhline{
 \BLOCK{-for c in ctx.columns-}
 	\BLOCK{-if loop.first-}
 		>{\arrayrulecolor{ColorTable}}-
+	\BLOCK{-else-}
+		>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
+		>{\arrayrulecolor{ColorTable}}-%
+	\BLOCK{endif-}
+\BLOCK{-endfor-}}
+}
+
+\newcommand*{\DefLineTableW}{\hhline{
+\BLOCK{-for c in ctx.columns-}
+	\BLOCK{-if loop.first-}
+		>{\arrayrulecolor{white}}-
 	\BLOCK{-else-}
 		>{\arrayrulecolor{white}\doublerulesepcolor{white}}|%
 		>{\arrayrulecolor{ColorTable}}-%
@@ -68,11 +79,16 @@
     $^{\VAR{-cell.markers | join(',')-}}$
   \BLOCK{-endif-}
   \BLOCK{-if not loop.last-}
-    \VAR{-' & '-}
-  \BLOCK{-else}
-    \\
-    \arrayrulecolor{ColorTable}\DefLineTable 
-  \BLOCK{endif-}
+			\VAR{-' & '-}
+			\BLOCK{-else}
+			\BLOCK{if cell.linea is defined}
+			\\
+			\arrayrulecolor{ColorTable}\DefLineTable 
+			\BLOCK{else}
+			\\
+			\arrayrulecolor{ColorTable}\DefLineTableW 
+			\BLOCK{endif}
+		\BLOCK{endif-}
  \BLOCK{-endfor-}
 \BLOCK{endfor-}
 \DefEndTable
